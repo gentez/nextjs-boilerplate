@@ -10,7 +10,6 @@
 
 module.exports = {
     rules: {
-      'header-empty': [2, 'never'],
-      'header-case': [2, 'always', 'lower-case']
+      'header-min-length': [2, 'always', 2]
     },
   };

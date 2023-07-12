@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { ComponentProps } from './constants';
+import NavigationBar from '../navbar';
+import Footer from '../footer/Footer';
 
 export const Container = ({ children }: ComponentProps) => {
   return (
@@ -12,11 +14,11 @@ export const Container = ({ children }: ComponentProps) => {
       </Head>
       <div id="container">
         <div className="header">
-          <p>header component should be call over here..</p>
+          <p><NavigationBar data={[]}/></p>
         </div>
         {children}
         <div className="footer">
-          <p>footer component should be call over here..</p>
+          <p><Footer/></p>
         </div>
       </div>
     </div>

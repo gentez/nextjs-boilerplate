@@ -1,12 +1,12 @@
 import {NextPage } from 'next';
 import { PageData } from 'types';
-import Header from '../componenets/Head/Head';
+// import Header from '../componenets/Head/Head';
 import { getAllEntries, getEntryBySlug } from '@/app-modules/repositories/strapi-repository';
 
 const Page: NextPage<{data:PageData}> = ({data}) => {
   return (
     <>
-    <Header title={data.Title}/>
+    {/* <Header title={data.Title}/> */}
 {
   <div className='container'>
     <h1>{data.Title}</h1>

@@ -14,11 +14,11 @@ export const Container = ({ children }: ComponentProps) => {
       </Head>
       <div id="container">
         <div className="header">
-          <p><NavigationBar data={[]}/></p>
+          <NavigationBar data={[]}/>
         </div>
         {children}
         <div className="footer">
-          <p><Footer/></p>
+          <Footer/>
         </div>
       </div>
     </div>

@@ -1,11 +1,5 @@
-import React from 'react'
-
 const style = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default style
+export default style;

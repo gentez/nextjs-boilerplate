@@ -16,8 +16,12 @@ export const Container = ({ children }: ComponentProps) => {
         <div className="header">
           <NavigationBar data={[]}/>
         </div>
+        <div  className='container' >
         {children}
-        <div className="footer">
+        </div>
+        
+        
+        <div className="footer fixed bottom-0 w-full">
           <Footer/>
         </div>
       </div>

@@ -1,5 +1,7 @@
-export function getStrapiURL(path:String) {
-        return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337/api'}${path}`;
+export function getStrapiURL(path: String) {
+  return `${
+    process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337/api'
+  }${path}`;
 }
 // export function getStrapiMedia(url: string | null) {
 //     if (url == null) {
@@ -10,7 +12,7 @@ export function getStrapiURL(path:String) {
 //     }
 //         return `${getStrapiURL()}${url}`;
 // }
-    
+
 // export function formatDate(dateString: string) {
 //         const date = new Date(dateString);
 //         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };

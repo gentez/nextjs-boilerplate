@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { ComponentProps } from './constants';
 import NavigationBar from '../navbar';
-import Footer from '../footer/Footer';
+import Footer from '../footer';
 
 export const Container = ({ children }: ComponentProps) => {
   return (

@@ -1,5 +1,3 @@
-import Container from "@/components/global/Global/Container";
-
 export default function Home() {
   return (
     <>

@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "commitlint.config.js", "next-sitemap.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "commitlint.config.js", "src/app-modules/repositories/Api-Repository"],
   "exclude": ["node_modules"]
 }

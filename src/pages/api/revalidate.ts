@@ -1,14 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-// import logger from "lib/modules/pino-logger";
 import logger from "@/app-modules/logging/winston-logger";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  logger.info('Revelidate API called')
+  const instance:Object={instance: process.env.NODE_ENV === "production" ? "production" : "dev"}
+  logger.info('Revelidate API called',instance)
 
 // const child = logger.info({ a: 'property' })
   try {
-    // Check for secret to confirm this is a valid request
     if (req.method !== "POST") {
-      logger.error("Invalid HTTP method")
+      logger.error("Invalid HTTP method",)
       return res.status(400).json({ error: "Invalid HTTP method" });
     }
 
@@ -27,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     logger.info(`${slug} page revaildated successfully!!`)
     return res.json({ revalidated: true });
   } catch (err) {
-    // console.log(err);
+    console.log(err);
     logger.error(`Page not revaildated!!`)
     return res.status(500).send("Error revalidating");
   }

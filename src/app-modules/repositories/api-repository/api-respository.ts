@@ -7,12 +7,12 @@ interface ApiProps {
 
 export const loginApi = (props: ApiProps): Promise<any> => {
   const { token, data } = props;
-  return apiHandler(token).post('/api/login', data);
+  return apiHandler(token).post('/api/user/login', data);
 };
 
 export const RegisterApi = (props: ApiProps): Promise<any> => {
     const { token, data } = props;
-    return apiHandler(token).post('/api/retister', data);
+    return apiHandler(token).post('/api/user/register', data);
   };
 
 

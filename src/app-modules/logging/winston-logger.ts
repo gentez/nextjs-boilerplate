@@ -1,31 +1,9 @@
 import CustomLoggly from 'types';
 import * as winston from 'winston';
 import { createLogger, format, transports} from 'winston';
-const token = process.env.LOGGLY_TOKEN?.toString() || "";
-const instance = process.env.NODE_ENV === "production" ? "production" : "dev" || "";
-
-const customLevels = {
-  levels: {
-    critical: 0,
-    error: 1,
-    warn: 2,
-    info: 3,
-    verbose: 4,
-    debug: 5,
-    silly: 6
-  },
-  colors: {
-    critical: 'red',
-    error: 'red',
-    warn: 'yellow',
-    info: 'green',
-    verbose: 'blue',
-    debug: 'cyan',
-    silly: 'magenta'
-  }
-};
+import { logLevels,LogLevelColor, token, instance, loggingEnabled } from '../constants'; // Convert the string to a boolean
 const logger = createLogger({
-  levels: customLevels.levels,
+  levels: logLevels,
   format: format.json(),
   transports: [
     new transports.Console({
@@ -42,9 +20,9 @@ const logger = createLogger({
       custom: {
         instance: instance,
       }
-    })
+    },loggingEnabled)
   ]
 });
 
-winston.addColors(customLevels.colors);
+winston.addColors(LogLevelColor);
 export default logger;

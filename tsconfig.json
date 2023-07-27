@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "commitlint.config.js", "src/app-modules/repositories/Api-Repository"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "commitlint.config.js", "src/app-modules/repositories/Api-Repository", "src/app-modules/logging/winston-logger.ts"],
   "exclude": ["node_modules"]
 }

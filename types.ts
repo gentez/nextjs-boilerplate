@@ -14,14 +14,28 @@ export interface NavBar {
     slug:  string;
 }
 interface CustomLogglyOptions extends LogglyOptions {
-    custom: {
-      instance: string;
-    };
+  custom: {
+    instance: string;
+  };
+}
+
+class CustomLoggly extends Loggly {
+  private readonly loggingEnabled: boolean;
+
+  constructor(options: CustomLogglyOptions, loggingEnabled: boolean) {
+    super(options);
+    this.loggingEnabled = loggingEnabled;
   }
-  
-  class CustomLoggly extends Loggly {
-    constructor(options: CustomLogglyOptions) {
-      super(options);
+
+  log(info: any, next: () => void): void {
+    // Check if logging is enabled and only send logs if it is
+    if (this.loggingEnabled) {
+      super.log(info, next);
+    } else {
+      // Skip the log and proceed to the next transport
+      next();
     }
   }
-export default CustomLoggly
+}
+
+export default CustomLoggly;

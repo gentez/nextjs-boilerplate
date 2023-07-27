@@ -1,12 +1,11 @@
 import {NextPage } from 'next';
 import { PageData } from 'types';
-// import Header from '../componenets/Head/Head';
 import { getAllEntries, getEntryBySlug } from '@/app-modules/repositories/strapi-repository';
+import logger from '@/app-modules/logging/winston-logger';
 
 const Page: NextPage<{data:PageData}> = ({data}) => {
   return (
     <>
-    {/* <Header title={data.Title}/> */}
 {
   <div className='container'>
     <h1>{data.Title}</h1>
@@ -17,6 +16,7 @@ const Page: NextPage<{data:PageData}> = ({data}) => {
   );
 };
 export async function getStaticPaths(){
+  logger.info("Called")
   const res=await getAllEntries("pagesName")
   return {
     paths:res.map(({slug}:any) => {

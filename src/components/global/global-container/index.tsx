@@ -1,11 +1,13 @@
+import { SessionProvider } from 'next-auth/react';
 import { ComponentProps } from './constants';
 import { Container } from './container';
 import Context from './context';
 
 export const GlobalContainer = ({ children }: ComponentProps) => {
   return (
-    <Context.Provider value={{}}>
+    <SessionProvider>
       <Container>{children}</Container>
-    </Context.Provider>
+      </SessionProvider>
+  
   );
 };

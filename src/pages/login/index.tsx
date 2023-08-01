@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import {apiNextHandler}from '../../app-modules/connection/next-api'
 import {displayErrorToast,displaySuccessToast}from '../../Helper/toast_notification_function'
+import { signIn } from "next-auth/react";
 
 
 
@@ -24,10 +25,12 @@ export default function LoginPage() {
     const onLogin = async () => {
         try {
             setLoading(true);
-            const response = await apiNextHandler().post("/api/loginapi", user);
-            console.log("Login success", response.data);
-            displaySuccessToast("Login success")
-            router.push("/profile");
+           const result=await signIn('credentials',{
+            email:user.email,
+            password:user.password,
+            redirect:true,
+            callbackUrl:"/profile"
+           })
 
         } catch (error:any) {
             console.log("Login failed", error.message);

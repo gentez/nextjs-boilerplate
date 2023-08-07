@@ -14,13 +14,21 @@ export const authOptions :NextAuthOptions  = {
         async authorize(credentials, req) {
         const {email,password}=credentials as any;
         const res= await loginApi({data:{email,password}})
-        if(res.data.token){
-            return res.data.token
+        console.log(res.data)
+        if(res.data){
+            return res.data
         }else {
             return null
         }
     }
-      })
+      }),
+     
   ],
+  session:{
+    strategy:'jwt'
+  },
+  pages: {
+    signIn: "/login",
+  },
 }
 export default NextAuth(authOptions)

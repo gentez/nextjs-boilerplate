@@ -7,11 +7,6 @@ import { toast } from "react-hot-toast";
 import {apiNextHandler}from '../../app-modules/connection/next-api'
 import {displayErrorToast,displaySuccessToast}from '../../Helper/toast_notification_function'
 import { signIn } from "next-auth/react";
-
-
-
-
-
 export default function LoginPage() {
     const router = useRouter();
     const [user, setUser] = React.useState({

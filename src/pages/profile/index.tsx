@@ -4,14 +4,17 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 
 export default function ProfilePage() {
     const router = useRouter()
     const [data, setData] = useState("nothing")
+    const session=useSession()
+    console.log(session,'seesion data')
     const logout = async () => {
         try {
-            await axios.get('/api/users/logout')
+            await signOut()
             toast.success('Logout successful')
             router.push('/login')
         } catch (error:any) {

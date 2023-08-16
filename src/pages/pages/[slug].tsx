@@ -1,7 +1,6 @@
 import {NextPage } from 'next';
 import { PageData } from 'types';
 import { getAllEntries, getEntryBySlug } from '@/app-modules/repositories/strapi-repository';
-import logger from '@/app-modules/logging/winston-logger';
 
 const Page: NextPage<{data:PageData}> = ({data}) => {
   return (

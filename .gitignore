@@ -1,5 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+# Ignore the "sitemap.xml" file
+public/sitemap.xml
+public/sitemap-0.xml
 # dependencies
 /node_modules
 /.pnp

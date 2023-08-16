@@ -3,8 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
-import { displayErrorToast, displaySuccessToast } from "@/Helper/toast_notification_function";
+import { displayErrorToast, displaySuccessToast } from "@/helper/toast_notification_function";
 
 
 
@@ -22,7 +21,6 @@ export default function SignupPage() {
     const onSignup = async () => {
         try {
             setLoading(true);
-            const response = await axios.post("/api/registerapi", user);
             router.push("/login");
          displaySuccessToast('Registeration successful')
         } catch (error:any) { 

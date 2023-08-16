@@ -1,14 +1,9 @@
 "use client";
 import Link from "next/link";
 import React, {useEffect} from "react";
-import {useRouter} from "next/navigation";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import {apiNextHandler}from '../../app-modules/connection/next-api'
-import {displayErrorToast,displaySuccessToast}from '../../Helper/toast_notification_function'
+import {displayErrorToast}from '../../helper/toast_notification_function'
 import { signIn } from "next-auth/react";
 export default function LoginPage() {
-    const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
         password: "",

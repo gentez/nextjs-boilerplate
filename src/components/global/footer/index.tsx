@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import {styles} from './styles';
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8">

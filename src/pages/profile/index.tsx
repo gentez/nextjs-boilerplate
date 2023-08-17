@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link";
-import React, {useState} from "react";
+import React from "react";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -8,7 +7,6 @@ import { signOut, useSession } from "next-auth/react";
 
 export default function ProfilePage() {
     const router = useRouter()
-    const [data, setData] = useState("nothing")
     const session=useSession()
     console.log(session,'seesion data')
     const logout = async () => {
@@ -26,8 +24,6 @@ export default function ProfilePage() {
             <h1>Profile</h1>
             <hr />
             <p>Profile page</p>
-            <h2 className="p-1 rounded bg-green-500">{data === 'nothing' ? "Nothing" : <Link href={`/profile/${data}`}>{data}
-            </Link>}</h2>
         <hr />
         <button
         onClick={logout}

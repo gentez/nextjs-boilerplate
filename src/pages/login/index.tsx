@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, {useEffect} from "react";
+import React from "react";
 import {displayErrorToast}from '../../helper/toast_notification_function'
 import { signIn } from "next-auth/react";
 export default function LoginPage() {
@@ -9,18 +9,18 @@ export default function LoginPage() {
         password: "",
        
     })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     
     const onLogin = async () => {
         try {
             setLoading(true);
-           const result=await signIn('credentials',{
+           await signIn('credentials',{
             email:user.email,
             password:user.password,
             redirect:true,
             callbackUrl:"/profile"
            })
+           
 
         } catch (error:any) {
             console.log("Login failed", error.message);
@@ -31,13 +31,13 @@ export default function LoginPage() {
     }
  
  
-    useEffect(() => {
-        if(user.email.length > 0 && user.password.length > 0) {
-            setButtonDisabled(false);
-        } else{
-            setButtonDisabled(true);
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if(user.email.length > 0 && user.password.length > 0) {
+    //         setButtonDisabled(false);
+    //     } else{
+    //         setButtonDisabled(true);
+    //     }
+    // }, [user]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">

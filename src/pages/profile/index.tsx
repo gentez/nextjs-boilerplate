@@ -2,13 +2,11 @@
 import React from "react";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { signOut} from "next-auth/react";
 
 
 export default function ProfilePage() {
     const router = useRouter()
-    const session=useSession()
-    console.log(session,'seesion data')
     const logout = async () => {
         try {
             await signOut()

@@ -1,6 +1,7 @@
 import { loginApi } from "@/app-modules/repositories/api-repository/api-respository";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 export const authOptions :NextAuthOptions  = {
   // Configure one or more authentication providers
   providers: [
@@ -12,13 +13,17 @@ export const authOptions :NextAuthOptions  = {
         },
         async authorize(credentials) {
         const {email,password}=credentials as any;
-        const res= await loginApi({data:{email,password}})
-        console.log(res.data)
-        if(res.data){
-            return res.data
-        }else {
+        try {
+          const res= await loginApi({data:{email,password}})
+          if(res.data.token){
+              return res.data
+          }else {
             return null
+          }
+        } catch (error:any) {
+        return null
         }
+       
     }
       }),
      

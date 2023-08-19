@@ -1,15 +1,15 @@
-import { toast, ToastOptions } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 export const displaySuccessToast = (message: string): void => {
-  const toastOptions: ToastOptions = {
-    position: 'top-center',
-    duration: 2000,
-    style: {
-      display: 'none',
-    },
-  };
+  // const toastOptions: ToastOptions = {
+  //   position: 'top-center',
+  //   duration: 2000,
+  //   style: {
+  //     display: 'none',
+  //   },
+  // };
 
-  toast.success(message, toastOptions);
+  toast.success(message);
 };
 
 export const displayErrorToast = (error: any): void => {
@@ -30,16 +30,15 @@ export const displayErrorToast = (error: any): void => {
       errorMessage = 'An error occurred';
     }
   } else {
-    errorMessage = 'An error occurred';
+    errorMessage = error;
   }
 
-  const toastOptions: ToastOptions = {
-    position: 'top-center',
-    duration: 2000,
-    style: {
-      display: 'none',
-    },
-  };
-
-  toast.error(errorMessage, toastOptions);
+  // const toastOptions: ToastOptions = {
+  //   position: 'top-center',
+  //   duration: 2000,
+  //   style: {
+  //     display: 'none',
+  //   },
+  // };
+  toast.error(errorMessage);
 };

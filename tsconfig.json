@@ -38,7 +38,7 @@
     "src/app-modules/repositories/Api-Repository",
     "src/app-modules/logging/winston-logger.ts", 
     ".next/types/**/*.ts"
-  ],
+, "src/helper/toast_notification_function.ts"  ],
   "exclude": [
     "node_modules"
   ]

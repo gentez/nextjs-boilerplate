@@ -1,48 +1,34 @@
 "use client";
 import Link from "next/link";
-import React, {useEffect} from "react";
-import {useRouter} from "next/navigation";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import {apiNextHandler}from '../../app-modules/connection/next-api'
-import {displayErrorToast,displaySuccessToast}from '../../Helper/toast_notification_function'
+import React from "react";
 import { signIn } from "next-auth/react";
 export default function LoginPage() {
-    const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
         password: "",
        
     })
-    const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     
     const onLogin = async () => {
-        try {
-            setLoading(true);
-           const result=await signIn('credentials',{
+        const result=   await signIn('credentials',{
             email:user.email,
             password:user.password,
             redirect:true,
             callbackUrl:"/profile"
            })
-
-        } catch (error:any) {
-            console.log("Login failed", error.message);
-         displayErrorToast('login failed');
-        } finally{
-        setLoading(false);
-        }
+           console.log(result,'result')
+           setLoading(false);
     }
  
  
-    useEffect(() => {
-        if(user.email.length > 0 && user.password.length > 0) {
-            setButtonDisabled(false);
-        } else{
-            setButtonDisabled(true);
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if(user.email.length > 0 && user.password.length > 0) {
+    //         setButtonDisabled(false);
+    //     } else{
+    //         setButtonDisabled(true);
+    //     }
+    // }, [user]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">

@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental:{
-    appDir:true
-  }
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

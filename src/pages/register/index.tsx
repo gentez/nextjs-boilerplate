@@ -1,37 +1,31 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import {useRouter} from "next/navigation";
-import axios from "axios";
+import { apiNextHandler } from "@/app-modules/connection/next-api";
 import { toast } from "react-hot-toast";
-import { displayErrorToast, displaySuccessToast } from "@/Helper/toast_notification_function";
-
-
 
 
 export default function SignupPage() {
-    const router = useRouter();
     const [user, setUser] = React.useState({
         email: "",
         password: "",
         name: "",
     })
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
 
     const onSignup = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.post("/api/registerapi", user);
-            router.push("/login");
-         displaySuccessToast('Registeration successful')
-        } catch (error:any) { 
-        displayErrorToast(error.message)
-        }finally {
-            setLoading(false);
+      apiNextHandler().post('/api/registerapi',user).then((res)=>{
+        console.log(res)
+        if(res.data.success){
+            toast.success('successfully Registered')
         }
-    }
+      }
+      ).catch((err)=>{
+        console.log(err)
+        toast.error(err.message)
 
+      })
+    }
     useEffect(() => {
         if(user.email.length > 0 && user.password.length > 0 && user.name.length > 0) {
             setButtonDisabled(false);
@@ -43,7 +37,6 @@ export default function SignupPage() {
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1>{loading ? "Processing" : "Signup"}</h1>
         <hr />
         <label htmlFor="name">name</label>
         <input 

@@ -3,8 +3,6 @@ import logger from "@/app-modules/logging/winston-logger";
 import { instance } from "@/app-modules/constants";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   logger.info('Revelidate API called',{instance:instance})
-
-// const child = logger.info({ a: 'property' })
   try {
     if (req.method !== "POST") {
       logger.error("Invalid HTTP method",{instance:instance})

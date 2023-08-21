@@ -1,4 +1,4 @@
-// import { error } from "console";/
+
 import { RegisterApi } from "@/app-modules/repositories/api-repository/api-respository";
 import { NextApiRequest, NextApiResponse } from "next";
 

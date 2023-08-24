@@ -8,6 +8,13 @@ export interface PageData {
     createdAt:   Date;
     updatedAt:   Date;
     publishedAt: Date;
+    columns:[{
+      editor: string;
+      grid:number;
+    }]
+    nav:any;
+    footer:any;
+
 }
 export interface NavBar {
     Title: string;

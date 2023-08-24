@@ -14,7 +14,7 @@ const NavigationBar: NextPage<NavBarProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchedData: NavBar[] = await getAllEntries("pagesName");
+        const fetchedData: NavBar[] = await getAllEntries("page");
         setNavbarData(fetchedData);
       } catch (error) {
         console.error('Error fetching navbar data:', error);
@@ -22,8 +22,8 @@ const NavigationBar: NextPage<NavBarProps> = () => {
     };
 
     fetchData();
+    
   }, []);
-
   return (
     <nav className="bg-gray-800">
       <ul className="flex justify-center">

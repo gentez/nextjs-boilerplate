@@ -11,24 +11,21 @@ export default function LoginPage() {
     const [loading, setLoading] = React.useState(false);
     
     const onLogin = async () => {
-        const result=   await signIn('credentials',{
-            email:user.email,
-            password:user.password,
-            redirect:true,
-            callbackUrl:"/profile"
-           })
-           console.log(result,'result')
-           setLoading(false);
+        try {
+            const result=   await signIn('credentials',{
+                email:user.email,
+                password:user.password,
+                redirect:true,
+                callbackUrl:'/profile'
+               })
+               setLoading(false);
+               console.log(result,'result')
+        } catch (error) {
+            console.log(error)
+        }
+      
+         
     }
- 
- 
-    // useEffect(() => {
-    //     if(user.email.length > 0 && user.password.length > 0) {
-    //         setButtonDisabled(false);
-    //     } else{
-    //         setButtonDisabled(true);
-    //     }
-    // }, [user]);
 
     return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">
@@ -57,6 +54,7 @@ export default function LoginPage() {
             onClick={onLogin}
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
             <Link href="/register">Visit Signup page</Link>
+            <Link href="/forget">forget Password</Link>
         </div>
     )
 

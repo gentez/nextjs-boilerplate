@@ -15,13 +15,10 @@ export const authOptions :NextAuthOptions  = {
         const {email,password}=credentials as any;
         try {
           const res= await loginApi({data:{email,password}})
-          if(res.data.token){
-              return res.data
-          }else {
-            return null
-          }
+          console.log(res)
+          return res.data
         } catch (error:any) {
-        return null
+        return error
         }
        
     }

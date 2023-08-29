@@ -7,13 +7,17 @@ export async function getAllEntries(collection: string): Promise<PageData[]> {
     const response = await fetch(getStrapiURL(`/${collection}s`));
     
     const {data} = await response.json();
+    
     const extractedData = data.map((item: any) => {
       return {
         slug: item.attributes.slug,
-        Title: item.attributes.Title
+        Title: item.attributes.Title,
+        id: item.id
       };
     });
+    extractedData.sort((a:any, b:any) => a.id - b.id);
     return extractedData;
+    
   } catch (error) {
     
     console.error(`Error fetching ${collection} entries:`, error);

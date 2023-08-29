@@ -29,7 +29,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
         </div>
       </div>
       {data?.footer?.data && (
-        <div className="footer fixed bottom-0 w-full">
+        <div className="footer bottom-0 w-full">
           <Footer />
         </div>
       )}

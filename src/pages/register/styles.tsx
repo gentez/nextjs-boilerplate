@@ -7,4 +7,4 @@ export const styles = `
     @apply p-2 border border-gray-300 rounded-lg mb-4 w-full focus:outline-none focus:border-gray-600 text-black;
   }
 `
-
+export default styles;

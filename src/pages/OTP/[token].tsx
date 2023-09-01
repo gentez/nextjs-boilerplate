@@ -27,18 +27,28 @@ const Index: React.FC = () => {
 
   const handleVerifyOTP = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+  
     try {
-      const response = await apiNextHandler(router.query.token).post('/api/verifyotp', { otp: otp.join('') });
-      
-      if (response.data.success) {
-        router.push(`/changepassword/${response?.data?.data?.token}`);
-        toast.success('OTP verified successfully');
+      const queryToken = router.query.token;
+  
+      if (!Array.isArray(queryToken) && typeof queryToken === 'string') {
+        const response = await apiNextHandler(queryToken).post('/api/verifyotp', {
+          otp: otp.join(''),
+        });
+  
+        if (response.data.success) {
+          router.push(`/changepassword/${response?.data?.data?.token}`);
+          toast.success('OTP verified successfully');
+        }
+      } else {
+        // Handle invalid or unexpected token type here
+        toast.error('Invalid token');
       }
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data);
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">

@@ -15,23 +15,37 @@ export default function ChangePassword() {
 
     const onLogin = async () => {
         try {
-            if (user.password !== user.c_password) {
-                toast.error('Passwords do not match');
-            } else {
-                setLoading(true);
-                const response = await apiNextHandler(router.query.token).post('/api/changePassword', { password: user.password });
-                
-                if (response.data.success) {
-                    toast.success('Password changed successfully');
-                    router.push('/');
-                }
+          if (user.password !== user.c_password) {
+            toast.error('Passwords do not match');
+          } else {
+            setLoading(true);
+      
+            const token = router.query.token as string | undefined;
+      
+            if (!token) {
+              toast.error('Invalid token');
+              return;
             }
-        } catch (error:any) {
-            toast.error(error.response.data);
+      
+            const response = await apiNextHandler(token).post('/api/changePassword', {
+              password: user.password,
+            });
+      
+            if (response.data.success) {
+              toast.success('Password changed successfully');
+              router.push('/');
+            } else {
+              toast.error('Password change failed');
+            }
+          }
+        } catch (error) {
+          toast.error('An error occurred while changing the password');
+          console.error(error);
         } finally {
-            setLoading(false);
+          setLoading(false);
         }
-    }
+      };
+      
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">

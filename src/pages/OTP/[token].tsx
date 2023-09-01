@@ -66,7 +66,7 @@ const Index: React.FC = () => {
               value={digit}
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              ref={refs[index]}
+              ref={refs[index] as React.RefObject<HTMLInputElement>}
               maxLength={1}
             />
           ))}

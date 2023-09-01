@@ -3,7 +3,9 @@ import React, { useEffect } from "react";
 import { apiNextHandler } from "@/app-modules/connection/next-api";
 import { toast } from "react-hot-toast";
 import { styles } from "./styles";
+import { useRouter } from "next/router";
 export default function SignupPage() {
+    const router = useRouter();
     const [user, setUser] = React.useState({
         firstName: "",
         lastName: "",
@@ -17,9 +19,9 @@ export default function SignupPage() {
         apiNextHandler()
             .post('/api/registerapi', user)
             .then((res) => {
-                if (res.data.success) {
+                if (res.data.token) {
                     toast.success('Successfully Registered');
-                    
+                    router.push('/login');
                 }
             })
             .catch((err) => {

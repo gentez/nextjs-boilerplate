@@ -65,7 +65,7 @@ const NavigationBar: NextPage<NavBarProps> = () => {
       <ul
         className="list-style-none mr-auto flex flex-col pl-0 lg:mt-1 lg:flex-row"
         data-te-navbar-nav-ref>
-       {navbarData.map(({Title,slug})=>{
+       {navbarData?.map(({Title,slug})=>{
         return(<>
           <li
           className="my-4 pl-2 lg:my-0 lg:pl-2 lg:pr-1"
@@ -80,7 +80,8 @@ const NavigationBar: NextPage<NavBarProps> = () => {
         )
       })}
       </ul>
-      <a href="https://strapi-dev-ddlv.onrender.com/admin/auth/login" target='_blank' className='text-white bg-blue-500 p-2 rounded-md hover:bg-white hover:text-blue-500 me-3'>Admin Panel</a>
+      {/* <Link href="https://strapi-dev-ddlv.onrender.com/admin/auth/login" target='_blank' className='text-white bg-blue-500 p-2 rounded-md hover:bg-white hover:text-blue-500 me-3'>Admin Panel</Link> */}
+      <Link href="/register" target='_blank' className='text-white bg-blue-500 p-2 rounded-md hover:bg-white hover:text-blue-500 me-3'>Admin Panel</Link>
     </div>
   </div>
 </nav></>

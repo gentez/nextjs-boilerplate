@@ -1,63 +1,81 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
+import { styles } from "./styles";
+
 export default function LoginPage() {
-    const [user, setUser] = React.useState({
-        email: "",
-        password: "",
-       
-    })
-    const [loading, setLoading] = React.useState(false);
-    
-    const onLogin = async () => {
-        const result=   await signIn('credentials',{
-            email:user.email,
-            password:user.password,
-            redirect:true,
-            callbackUrl:"/profile"
-           })
-           console.log(result,'result')
-           setLoading(false);
+  const [user, setUser] = React.useState({
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = React.useState(false);
+
+  const onLogin = async () => {
+    try {
+      setLoading(true);
+      const result = await signIn("credentials", {
+        email: user.email,
+        password: user.password,
+        redirect: true,
+        callbackUrl: "/admin",
+      });
+      setLoading(false);
+      console.log(result, "result");
+    } catch (error) {
+      console.log(error);
     }
- 
- 
-    // useEffect(() => {
-    //     if(user.email.length > 0 && user.password.length > 0) {
-    //         setButtonDisabled(false);
-    //     } else{
-    //         setButtonDisabled(true);
-    //     }
-    // }, [user]);
+  };
 
-    return (
+  // Check if either email or password is empty
+  const isButtonDisabled = !user.email || !user.password;
+
+  return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">
-        <h1>{loading ? "loading" : "Login"}</h1>
-        <hr />
-        
-        <label htmlFor="email">email</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="email"
-            type="text"
-            value={user.email}
-            onChange={(e) => setUser({...user, email: e.target.value})}
-            placeholder="email"
-            />
-        <label htmlFor="password">password</label>
-        <input 
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-            id="password"
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({...user, password: e.target.value})}
-            placeholder="password"
-            />
-            <button
-            onClick={onLogin}
-            className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">Login here</button>
-            <Link href="/register">Visit Signup page</Link>
+      <h1 className="text-2xl font-semibold mb-4">
+        {loading ? "Logging in..." : "Login"}
+      </h1>
+      <div className="bg-white rounded-lg shadow-md p-8 w-96">
+        <label htmlFor="email" className="text-sm mb-1">
+          Email
+        </label>
+        <input
+          className={styles}
+          id="email"
+          type="text"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Email"
+        />
+        <label htmlFor="password" className="text-sm mb-1">
+          Password
+        </label>
+        <input
+          className={styles}
+          id="password"
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="Password"
+        />
+        <button
+          onClick={onLogin}
+          className={`p-2 bg-blue-500 text-white rounded-lg w-full hover:bg-blue-600 focus:outline-none ${
+            isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={isButtonDisabled}
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+        <div className="mt-4">
+          <Link href="/register" className="text-blue-500 hover:underline mr-2">
+            Create an account
+          </Link>
+          <Link href="/forget" className="text-blue-500 hover:underline">
+            Forgot Password
+          </Link>
         </div>
-    )
-
+      </div>
+    </div>
+  );
 }

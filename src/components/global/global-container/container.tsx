@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { ComponentProps } from './constants';
-import NavigationBar from '../navbar';
-import Footer from '../footer';
 
 export const Container = ({ children }: ComponentProps) => {
   return (
@@ -13,18 +11,10 @@ export const Container = ({ children }: ComponentProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div id="container">
-        <div className="header">
-          <NavigationBar data={[]}/>
-        </div>
-        <div  className='container' >
+        
         {children}
         </div>
-        
-        
-        <div className="footer fixed bottom-0 w-full">
-          <Footer/>
-        </div>
-      </div>
+      
     </div>
   );
 };

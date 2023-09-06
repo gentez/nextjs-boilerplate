@@ -13,3 +13,19 @@
 .col-span-10 { grid-column: span 10 / span 10; }
 .col-span-11 { grid-column: span 11 / span 11; }
 .col-span-12 { grid-column: span 12 / span 12; }
+
+
+
+.input_otp{
+    width: 15%;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+   }
+.input_otp{
+    outline: none;
+    border: #ebe9e9 0.5px solid;
+    border-radius: 8px;
+    background-color: #f6f4f4;
+}

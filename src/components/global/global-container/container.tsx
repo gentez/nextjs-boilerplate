@@ -10,8 +10,7 @@ export const Container = ({ children }: ComponentProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div id="container">
-        
+      <div id="container" className='bg-black text-white'>
         {children}
         </div>
       

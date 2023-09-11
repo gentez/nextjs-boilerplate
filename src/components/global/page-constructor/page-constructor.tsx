@@ -1,22 +1,25 @@
+import Banner from '@/components/banner';
+import FAQS from '@/components/faqs';
 import Footer from '@/components/global/footer';
 import NavigationBar from '@/components/global/navbar';
 import { NextPage } from 'next';
 import React from 'react';
 import { PageData } from 'types';
+import Seo from '../seo';
 
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   
   return (
     <>
+    <Seo title={data.Title}/>
       {data?.nav?.data && (
         <div className="header">
           <NavigationBar data={[]} />
         </div>
       )}
-      {/* <NavigationBar data={data.nav.data} /> */}
+     
+      <Banner/>
       <div className="container p-4">
-        <h1 className="mb-4 text-3xl font-bold">{data.Title}</h1>
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           {data.columns.map((column, index) => (
             <div
@@ -28,6 +31,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           ))}
         </div>
       </div>
+      <FAQS/>
       {data?.footer?.data && (
         <div className="footer bottom-0 w-full">
           <Footer />

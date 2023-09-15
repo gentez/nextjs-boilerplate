@@ -1,64 +1,11 @@
 'use client';
 import Banner from '@/components/banner';
-import FAQS from '@/components/faqs';
 import Footer from '@/components/global/footer';
 import NavigationBar from '@/components/global/navbar';
 import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
 import { NextPage } from 'next';
-import Image from 'next/image';
 import { PageData } from 'types';
-import logo from '../../../../public/wrap.jpg';
 import Seo from '../seo';
-// const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
-//   const transform = (node) => {
-
-//     if (node.attribs && node.attribs.class) {
-//       node.attribs.className = node.attribs.class;
-//       delete node.attribs.class;
-//     }
-//     console.log(node);
-//     return node;
-//   };
-
-//   const options: HTMLReactParserOptions = {
-//     replace: transform
-//   }
-
-//   return (
-//     <>
-//       <Seo title={data?.Title} />
-//       {data?.nav?.data && (
-//         <div className="header">
-//           <NavigationBar data={[]} />
-//         </div>
-//       )}
-
-//       <Banner />
-//       <section className="m-3 bg-neutral-900 dark:bg-gray-800 dark:text-gray-100">
-//         <div className="container p-4 ">
-//           <div className="grid grid-cols-1 gap-4 bg-neutral-900 md:grid-cols-12">
-//             {data.columns.map((column, index) => (
-//               <div
-//                 key={index}
-//                 className={`col-span-${column.grid} rounded-lg border p-4 shadow-md`}
-//               >
-//                 {parser(column.editor,options)} {/* Parse HTML with options */}
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-//       <FAQS />
-//       {data?.footer?.data && (
-//         <div className="footer bottom-0 w-full">
-//           <Footer />
-//         </div>
-//       )}
-//     </>
-//   );
-// };
-
-// export default PageConstructor;
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   const options: HTMLReactParserOptions = {
     replace: ({ attribs, children, name }) => {
@@ -78,9 +25,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           </summary>
         );
       }
-      if (name === 'img') {
-        return <Image width={50} height={50} src={logo} alt="" />;
-      }
+
       if (attribs?.classname === 'mce-accordion') {
         return (
           <details className="mce-accordion bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">

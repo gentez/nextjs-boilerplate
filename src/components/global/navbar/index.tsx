@@ -75,7 +75,7 @@ const NavigationBar: NextPage<NavBarProps> = () => {
               data-te-navbar-nav-ref
             >
               {navbarData?.map(({ Title, slug }) => {
-                console.log(router);
+                
                 return (
                   <>
                     <li

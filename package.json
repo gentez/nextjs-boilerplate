@@ -25,6 +25,7 @@
     "eslint-config-next": "13.2.1",
     "forever-agent": "^0.6.1",
     "fs": "^0.0.1-security",
+    "html-react-parser": "^4.2.2",
     "net": "^1.0.2",
     "next": "13.2.1",
     "next-auth": "^4.22.3",

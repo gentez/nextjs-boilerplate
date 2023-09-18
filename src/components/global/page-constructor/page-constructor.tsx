@@ -44,21 +44,19 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
         </div>
       )}
 
-      <Banner />
-      <section className="m-2 bg-neutral-900 dark:bg-gray-800 dark:text-gray-100">
-        <div className="container p-4 ">
-          <div className="grid grid-cols-1 gap-4 bg-neutral-900 md:grid-cols-12">
+      {/* <Banner /> */}
+      
+      
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
             {data.columns.map((column, index) => (
               <div
                 key={index}
-                className={`col-span-${column.grid} p-2 shadow-md`}
+                className={`col-span-${column.grid} shadow-md`}
               >
                 {parser(column.editor, options)}
               </div>
             ))}
           </div>
-        </div>
-      </section>
       {data?.footer?.data && (
         <div className="footer bottom-0 w-full">
           <Footer />

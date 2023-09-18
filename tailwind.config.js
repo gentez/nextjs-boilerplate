@@ -20,6 +20,7 @@ module.exports = {
         ...colors,
         'light-gold': '#f5bc51',
         'dark-gold': '#533519',
+        'dark-orange': '#ff651c',
         primary: {
           50: '#fffee5',
           100: '#fffcbf',

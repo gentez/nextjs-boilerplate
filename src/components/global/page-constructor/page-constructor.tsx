@@ -47,7 +47,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       {/* <Banner /> */}
       
       
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-12">
+          <div className="grid grid-cols-1 md:grid-cols-12">
             {data.columns.map((column, index) => (
               <div
                 key={index}

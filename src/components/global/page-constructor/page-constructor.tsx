@@ -6,10 +6,11 @@ import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
 import { NextPage } from 'next';
 import { PageData } from 'types';
 import Seo from '../seo';
+import Faq from '@/components/Faq';
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   const options: HTMLReactParserOptions = {
     replace: ({ attribs, children, name }) => {
-      console.log(name);
+      
       if (!attribs) {
         return;
       }
@@ -44,8 +45,8 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
         </div>
       )}
 
-      {/* <Banner /> */}
-      
+      <Banner />
+      <Faq showTitle={false} />
       
           <div className="grid grid-cols-1 md:grid-cols-12">
             {data.columns.map((column, index) => (

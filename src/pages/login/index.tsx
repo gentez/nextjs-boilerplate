@@ -21,7 +21,7 @@ export default function LoginPage() {
         callbackUrl: "/admin",
       });
       setLoading(false);
-      console.log(result, "result");
+      
     } catch (error) {
       console.log(error);
     }

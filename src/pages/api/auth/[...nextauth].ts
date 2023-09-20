@@ -15,7 +15,7 @@ export const authOptions :NextAuthOptions  = {
         const {email,password}=credentials as any;
         try {
           const res= await loginApi({data:{email,password}})
-          console.log(res)
+          
           return res.data
         } catch (error:any) {
         return error

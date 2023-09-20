@@ -1,38 +1,63 @@
-import Image from 'next/image'
-import React from 'react'
-import Link from 'next/link'
+// import Testimonial from '../../components/';
+// import CounterComponent from '../components/CounterComponent';
+import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { IRootState } from '../../store';
 const Banner = () => {
-  return (
+  const isRtl =
+    useSelector((state: IRootState) => state.themeConfig.direction) === 'rtl'
+      ? true
+      : false;
 
-<section className="dark:bg-gray-800 text-black bg-dark-orange">
-  <div className="container grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 sm:py-6 lg:py-6">
-    <div className="flex flex-col justify-center p-6 text-center sm:text-left rounded-sm lg:max-w-md xl:max-w-lg">
-      <h1 className="text-5xl font-bold leading-none sm:text-6xl">JAALNET</h1>
-      <small className="mt-2 mb-8 text-lg sm:mb-12 text-white">
-      Success| Powered By Relationships.
-      </small>
-      <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-      <Link 
-  rel="noopener noreferrer" 
-  href="/pages/about" 
-  className="px-8 py-3 text-lg font-semibold rounded border-warmGray-50 bg-black text-orange-500 transition duration-300 ease-in-out hover:shadow-lg hover:bg-neutral-900"
->About JN</Link>
+  return (
+    <div className="overflow-hidden bg-black pt-[10px] sm:-mx-[178px] sm:rounded-b-[50%] lg:-mx-[78px] lg:pt-[34px]">
+      <div className="relative">
+        <img
+          src="/images/banner-lefticon.png"
+          alt="banner-lefticon"
+          className="absolute left-0 top-20 sm:left-[250px] lg:left-[150px]"
+        />
+        <img
+          src="/images/banner-rightIcon.png"
+          alt="banner-rightIcon"
+          className="absolute -top-4 right-0 sm:right-[250px] lg:right-[150px]"
+        />
+        <div className="container">
+          <div className="relative bg-[url(/assets/images/world-map.png)] bg-cover bg-top bg-no-repeat pb-0 pt-14 lg:pb-60 lg:pt-20 xl:pt-36">
+            <div className="relative z-[1] text-center text-white lg:w-3/5 ltr:lg:text-left rtl:lg:text-right xl:w-1/2">
+              <h2 className="text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[70px] lg:leading-[90px] ">
+                Make your <span className="italic text-primary">team</span>{' '}
+                <span className="italic text-secondary">work</span> together
+              </h2>
+              <p className="my-8 text-lg lg:w-[90%] ">
+                In publishing and graphic design, Lorem ipsum is a placeholder
+                text commonly used to demonstrate.
+              </p>
+              <Link
+                href="/about-us"
+                className="btn mx-auto mt-2 block w-fit bg-white lg:mx-0 lg:rtl:ml-auto"
+              >
+                read more
+              </Link>
+            </div>
+            <div
+              className="bottom-0 mx-auto mb-2 mt-5 w-auto ltr:right-0 rtl:left-0 md:w-[540px] lg:absolute lg:mb-0 lg:mt-0 xl:w-[650px]"
+              data-aos={isRtl ? 'fade-right' : 'fade-left'}
+              data-aos-duration="1000"
+              data-aos-offset="0"
+              data-aos-delay="200"
+            >
+              <img
+                src="/images/home-banner-icon.svg"
+                alt="home-banner-icon"
+                className="rtl:rotate-y-180"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div className="flex items-center justify-center p-6 mt-8 lg:mt-0 order-first sm:order-none">
-    <img 
-  src="image/wrap.jpg" 
-  alt="" 
-  className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 shadow-lg transform hover:scale-105 transition duration-300 border-none"
-/>
+  );
+};
 
-    </div>
-
-  </div>
-</section>
-
-
-  )
-}
-
-export default Banner
+export default Banner;

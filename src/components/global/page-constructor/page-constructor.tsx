@@ -1,4 +1,5 @@
 'use client';
+import Faq from '@/components/Faq';
 import Footer from '@/components/global/footer';
 import NavigationBar from '@/components/global/navbar';
 import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
@@ -7,9 +8,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PageData } from 'types';
+import AboutUs from '../../../pages/AboutUs/index';
+import Gallery from '../../../pages/Gallery/index';
+import Services from '../../../pages/Services/index';
 import { IRootState } from '../../../store';
 import Seo from '../seo';
-import Faq from '@/components/Faq';
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   const [active, setActive] = useState<any>(0);
   const isRtl =
@@ -18,7 +21,6 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       : false;
   const options: HTMLReactParserOptions = {
     replace: ({ attribs, children, name }) => {
-      
       if (!attribs) {
         return;
       }
@@ -37,7 +39,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       if (name === 'a') {
         return <Link {...attribs}>{domToReact(children, options)}</Link>;
       }
-      
+
       if (attribs?.classname === 'mce-accordion') {
         return (
           <details className="mce-accordion bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">
@@ -63,7 +65,12 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           </div>
         ))}
       </div>
-      {data.Faqs.length>0 && <Faq queries={data.Faqs}/>}
+      <AboutUs />
+      <div className="my-10">
+        <Gallery />
+      </div>
+      <Services />
+      {data.Faqs.length > 0 && <Faq queries={data.Faqs} />}
       {data?.footer?.data && (
         <div className="footer bottom-0 w-full">
           <Footer />

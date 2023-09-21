@@ -1,13 +1,21 @@
 'use client';
-import Banner from '@/components/banner';
 import Footer from '@/components/global/footer';
 import NavigationBar from '@/components/global/navbar';
 import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
 import { NextPage } from 'next';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { PageData } from 'types';
+import { IRootState } from '../../../store';
 import Seo from '../seo';
 import Faq from '@/components/Faq';
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
+  const [active, setActive] = useState<any>(0);
+  const isRtl =
+    useSelector((state: IRootState) => state.themeConfig.direction) === 'rtl'
+      ? true
+      : false;
   const options: HTMLReactParserOptions = {
     replace: ({ attribs, children, name }) => {
       
@@ -21,12 +29,15 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       }
       if (name === 'summary') {
         return (
-          <summary className="cursor-pointer text-orange-500">
+          <summary className="text-orange-500 cursor-pointer">
             {domToReact(children, options)}
           </summary>
         );
       }
-
+      if (name === 'a') {
+        return <Link {...attribs}>{domToReact(children, options)}</Link>;
+      }
+      
       if (attribs?.classname === 'mce-accordion') {
         return (
           <details className="mce-accordion bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">
@@ -36,6 +47,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       }
     },
   };
+
   return (
     <>
       <Seo title={data?.Title} />
@@ -44,20 +56,14 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           <NavigationBar data={[]} />
         </div>
       )}
-
-      <Banner />
-      <Faq showTitle={false} />
-      
-          <div className="grid grid-cols-1 md:grid-cols-12">
-            {data.columns.map((column, index) => (
-              <div
-                key={index}
-                className={`col-span-${column.grid} shadow-md`}
-              >
-                {parser(column.editor, options)}
-              </div>
-            ))}
+      <div className="grid grid-cols-1 md:grid-cols-12">
+        {data?.columns?.map((column, index) => (
+          <div key={index} className={`col-span-${column.grid}`}>
+            {parser(column?.editor, options)}
           </div>
+        ))}
+      </div>
+      {data.Faqs.length>0 && <Faq queries={data.Faqs}/>}
       {data?.footer?.data && (
         <div className="footer bottom-0 w-full">
           <Footer />
@@ -68,84 +74,3 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
 };
 
 export default PageConstructor;
-// 'use client';
-// import Banner from '@/components/banner';
-// import FAQS from '@/components/faqs';
-// import Footer from '@/components/global/footer';
-// import NavigationBar from '@/components/global/navbar';
-// import { NextPage } from 'next';
-// import { PageData } from 'types';
-// import Seo from '../seo';
-// import logo  from "../../../public/wrap.jpg"
-// import parse, { domToReact } from 'html-react-parser';
-// import { HTMLReactParserOptions, Element } from 'html-react-parser';
-// const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
-// const html = `
-// <details className="mce-accordion">
-//               <summary className="cursor-pointer">
-//                 Accordion summary...
-//               </summary>
-//               <div className="mt-2 text-black">Accordion body...</div>
-//             </details>
-// `;
-
-// const options:HTMLReactParserOptions = {
-//   replace: ({attribs, children,name}) => {
-//     console.log(name)
-//       if (!attribs) {
-//         return;
-//       }
-
-//       if (attribs?.id === 'main') {
-//         return <h1 style={{ fontSize: 42 }}>{domToReact(children, options)}</h1>;
-//       }
-//       if (name === 'summary') {
-//         return <summary className="cursor-pointer text-orange-500">{domToReact(children, options)}</summary>;
-//       }
-//       if (attribs?.classname === 'mce-accordion') {
-
-//         return (
-//           <details className="mce-accordion bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">
-//             {domToReact(children, options)}
-//           </details>
-//         );
-//       }
-//     }
-//   }
-
-//   return (
-//     <>
-//       {/* <Seo title={data?.Title} />
-//       {data?.nav?.data && (
-//         <div className="header">
-//           <NavigationBar data={[]} />
-//         </div>
-//       )}
-
-//       <Banner />
-//       <section className="dark:bg-gray-800 dark:text-gray-100 bg-neutral-900 m-3">
-//       <div className="container p-4 ">
-//         <div className="grid grid-cols-1 gap-4 md:grid-cols-12 bg-neutral-900">
-//           {data.columns.map((column, index) => (
-//             <div
-//               key={index}
-//               className={`col-span-${column.grid} rounded-lg border p-4 shadow-md`}
-//             >
-//              {parser(column.editor)}
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//       </section>
-//       <FAQS />
-//       {data?.footer?.data && (
-//         <div className="footer bottom-0 w-full">
-//           <Footer />
-//         </div>
-//       )} */}
-//       {parse(html, options)}
-//     </>
-//   );
-// };
-
-// export default PageConstructor;

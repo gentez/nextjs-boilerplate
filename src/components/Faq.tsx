@@ -1,52 +1,18 @@
+// import { queries } from '@/app-modules/constants';
 import { useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
-const Faq = ({
-    showTitle = true,
-    type = 'faq',
-    queries = [
-        {
-            id: 1,
-            question: 'How long is this site live?',
-            answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        },
-        {
-            id: 2,
-            question: 'How do I create an account?',
-            answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        },
-        {
-            id: 3,
-            question: 'What protections does Strategic Systems use to protect our data?',
-            answer: "For now it is limited to 100MB per instance. We'll offer expansion options soon.",
-        },
-        {
-            id: 4,
-            question: 'What type of support is included with this Service?',
-            answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        },
-        {
-            id: 5,
-            question: 'Do you have premium plans for products?',
-            answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        },
-        {
-            id: 6,
-            question: 'Who else is using plurk SaaS tool?',
-            answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        },
-    ],
-}) => {                             
+const Faq = ({queries}) => {                             
     const [active, setActive] = useState<any>(0);
     return (
         <section className="py-14 lg:py-[100px]">
             <div className="container">
                 <div className="heading text-center">
-                    <h6 className={`${showTitle ? '' : 'hidden'} ${type.toLowerCase() === 'modern-saas' ? '!text-secondary' : ''}`}>FAQs</h6>
+                    <h6 className="text-secondary">FAQs</h6>
                     <h4>
-                        Frequently Asked <span className={type.toLowerCase() === 'restaurent' ? '!text-secondary' : ''}>Questions</span>
+                        Frequently Asked Questions
                     </h4>
-                    <p className="mt-5 text-lg font-bold">Have questions? We’re help you.</p>
+                    <p className="mt-5 text-lg font-bold text-gray">Have questions? We’re help you.</p>
                 </div>
                 <div className="mx-auto lg:w-[730px]">
                     {queries.map((faq: any, i: number) => {

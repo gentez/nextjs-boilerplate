@@ -11,6 +11,10 @@ export interface PageData {
     columns:[{
       editor: string;
       grid:number;
+    }],
+    Faqs:[{
+      editor: string;
+      grid:number;
     }]
     nav:any;
     footer:any;

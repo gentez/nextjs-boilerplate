@@ -23,7 +23,7 @@ const Banner = () => {
           className="absolute -top-4 right-0 sm:right-[250px] lg:right-[150px]"
         />
         <div className="container">
-          <div className="relative bg-[url(/assets/images/world-map.png)] bg-cover bg-top bg-no-repeat pb-0 pt-14 lg:pb-60 lg:pt-20 xl:pt-36">
+          <div className="relative bg-[url(/images/world-map.png)] bg-cover bg-top bg-no-repeat pb-0 pt-14 lg:pb-60 lg:pt-20 xl:pt-36">
             <div className="relative z-[1] text-center text-white lg:w-3/5 ltr:lg:text-left rtl:lg:text-right xl:w-1/2">
               <h2 className="text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[70px] lg:leading-[90px] ">
                 Make your <span className="italic text-primary">team</span>{' '}

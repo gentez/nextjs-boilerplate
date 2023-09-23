@@ -35,7 +35,7 @@ const NavigationBar = (props: any) => {
         <img src="/images/jaalnet-logo.png" alt="Jaalnet" className="h-10" />
     </Link>
     <Link href="/">
-        <h2 className="text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">JAALNET</h2>
+        <h2 className="text-2xl text-white font-extrabold leading-normal sm:text-3xl lg:text-[25px] lg:leading-[45px] ">JAALN<span className='text-secondary'>E</span>T</h2>
     </Link>
 </div>
 

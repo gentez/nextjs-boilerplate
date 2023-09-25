@@ -3,6 +3,7 @@ import { ComponentProps } from './constants';
 import { Container } from './container';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import App from '../../../../App';
 import Footer from '../footer';
 import NavigationBar from '../navbar';
 export const GlobalContainer = ({ children }: ComponentProps) => {
@@ -44,7 +45,7 @@ export const GlobalContainer = ({ children }: ComponentProps) => {
       });
   }, []);
   return (
-    <>
+    <App>
     {showLoader && (
                     <div className="screen_loader fixed inset-0 z-[60] grid place-content-center bg-[#fafafa] dark:bg-[#060818]">
                         <svg
@@ -124,6 +125,6 @@ export const GlobalContainer = ({ children }: ComponentProps) => {
                     </button>
                 )}
     
-    </>
+    </App>
   )
 };

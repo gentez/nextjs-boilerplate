@@ -42,7 +42,7 @@ const Banner = () => {
             </div>
             <div
               className="bottom-0 mx-auto mb-2 mt-5 w-auto ltr:right-0 rtl:left-0 md:w-[540px] lg:absolute lg:mb-0 lg:mt-0 xl:w-[650px]"
-              data-aos={isRtl ? 'fade-right' : 'fade-left'}
+              // data-aos={isRtl ? 'fade-right' : 'fade-left'}
               data-aos-duration="1000"
               data-aos-offset="0"
               data-aos-delay="200"

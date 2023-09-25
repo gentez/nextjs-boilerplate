@@ -1,18 +1,14 @@
 'use client';
 import Faq from '@/components/Faq';
-import Footer from '@/components/global/footer';
-import NavigationBar from '@/components/global/navbar';
 import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PageData } from 'types';
-import AboutUs from '../../../pages/AboutUs/index';
-import Gallery from '../../../pages/Gallery/index';
-import Services from '../../../pages/Services/index';
 import { IRootState } from '../../../store';
 import Seo from '../seo';
+import Banner from '@/components/banner';
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   const [active, setActive] = useState<any>(0);
   const [activeTab, setActiveTab] = useState<string>('all');
@@ -38,7 +34,8 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
         );
       }
       if (name === 'a') {
-        return <Link {...attribs}>{domToReact(children, options)}</Link>;
+        
+        return <Link className={attribs.class} href={attribs.href}>{domToReact(children, options)}</Link>;
       }
       if (name === 'img' && attribs?.class==="pencil-ruler") {
         
@@ -71,6 +68,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           <NavigationBar data={[]} />
         </div>
       )} */}
+      {/* <Banner /> */}
       <div className="grid grid-cols-1 md:grid-cols-12">
         {data?.columns?.map((column, index) => (
           <div key={index} className={`col-span-${column.grid}`}>

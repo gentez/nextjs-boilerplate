@@ -1,6 +1,14 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
-
+/** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+const rotateX = plugin(function ({ addUtilities }) {
+    addUtilities({
+        '.rotate-y-180': {
+            transform: 'rotateY(180deg)',
+        },
+    });
+});
 module.exports = {
   darkMode: ['class'],
   content: ['./src/**/*.{js,ts,jsx,tsx}', './library/**/*.{js,ts,jsx,tsx}'],

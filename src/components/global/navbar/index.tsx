@@ -60,7 +60,7 @@ const NavigationBar = (props: any) => {
                                     </Link>
                                 </li>
                                 <li>
-                                <Link href="/about" className={router.pathname === '/about' || router.pathname === '/about-detail' ? 'active' : ''}>
+                                <Link href="/pages/about" className={router.pathname === '/pages/about' || router.pathname === '/pages/about' ? 'active' : ''}>
                                         About us
                                     </Link>
                                 </li>
@@ -112,14 +112,14 @@ const NavigationBar = (props: any) => {
                             </ul>
                         </div>
                         <ul className="flex items-center gap-2 ltr:pr-5 rtl:pl-5 ltr:lg:pl-5 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
-                            <li>
+                            {/* <li>
                                 <Link href="/profile"
                                     type="button"
                                     className="flex h-5 w-5 items-center text-white hover:text-primary rtl:text-primary"
                                 >
                                     Admin
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
                                 <button
                                     type="button"

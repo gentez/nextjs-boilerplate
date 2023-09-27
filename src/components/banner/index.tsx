@@ -1,6 +1,6 @@
 // import Testimonial from '../../components/';
 // import CounterComponent from '../components/CounterComponent';
-import Link from 'next/link';
+import a from 'next/a';
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../store';
 const Banner = () => {
@@ -10,38 +10,38 @@ const Banner = () => {
       : false;
 
   return (
-    <div className="overflow-hidden bg-black pt-[10px] sm:-mx-[178px] sm:rounded-b-[50%] lg:-mx-[78px] lg:pt-[34px]">
-      <div className="relative">
+    <div class="overflow-hidden bg-black pt-[10px] sm:-mx-[178px] sm:rounded-b-[50%] lg:-mx-[78px] lg:pt-[34px]">
+      <div class="relative">
         <img
           src="/images/banner-lefticon.png"
           alt="banner-lefticon"
-          className="absolute left-0 top-20 sm:left-[250px] lg:left-[150px]"
+          class="absolute left-0 top-20 sm:left-[250px] lg:left-[150px]"
         />
         <img
           src="/images/banner-rightIcon.png"
           alt="banner-rightIcon"
-          className="absolute -top-4 right-0 sm:right-[250px] lg:right-[150px]"
+          class="absolute -top-4 right-0 sm:right-[250px] lg:right-[150px]"
         />
-        <div className="container">
-          <div className="relative bg-[url(/images/world-map.png)] bg-cover bg-top bg-no-repeat pb-0 pt-14 lg:pb-60 lg:pt-20 xl:pt-36">
-            <div className="relative z-[1] text-center text-white lg:w-3/5 ltr:lg:text-left rtl:lg:text-right xl:w-1/2">
-              <h2 className="text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[70px] lg:leading-[90px] ">
-                Make your <span className="italic text-primary">team</span>{' '}
-                <span className="italic text-secondary">work</span> together
+        <div class="container">
+          <div class="relative bg-[url(/images/world-map.png)] bg-cover bg-top bg-no-repeat pb-0 pt-14 lg:pb-60 lg:pt-20 xl:pt-36">
+            <div class="relative z-[1] text-center text-white lg:w-3/5 ltr:lg:text-left rtl:lg:text-right xl:w-1/2">
+              <h2 class="text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[70px] lg:leading-[90px] ">
+                Make your <span class="italic text-primary">team</span>
+                <span class="italic text-secondary">work</span> together
               </h2>
-              <p className="my-8 text-lg lg:w-[90%] ">
+              <p class="my-8 text-lg lg:w-[90%] ">
                 In publishing and graphic design, Lorem ipsum is a placeholder
                 text commonly used to demonstrate.
               </p>
-              <Link
+              <a
                 href="/about-us"
-                className="btn mx-auto mt-2 block w-fit bg-white lg:mx-0 lg:rtl:ml-auto"
+                class="btn mx-auto mt-2 block w-fit bg-white lg:mx-0 lg:rtl:ml-auto"
               >
                 read more
-              </Link>
+              </a>
             </div>
             <div
-              className="bottom-0 mx-auto mb-2 mt-5 w-auto ltr:right-0 rtl:left-0 md:w-[540px] lg:absolute lg:mb-0 lg:mt-0 xl:w-[650px]"
+              class="bottom-0 mx-auto mb-2 mt-5 w-auto ltr:right-0 rtl:left-0 md:w-[540px] lg:absolute lg:mb-0 lg:mt-0 xl:w-[650px]"
               // data-aos={isRtl ? 'fade-right' : 'fade-left'}
               data-aos-duration="1000"
               data-aos-offset="0"
@@ -50,7 +50,7 @@ const Banner = () => {
               <img
                 src="/images/home-banner-icon.svg"
                 alt="home-banner-icon"
-                className="rtl:rotate-y-180"
+                class="rtl:rotate-y-180"
               />
             </div>
           </div>

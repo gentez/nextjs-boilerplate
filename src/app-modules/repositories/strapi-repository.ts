@@ -6,7 +6,7 @@ export async function getAllEntries(collection: string): Promise<PageData[]> {
     const response = await fetch(getStrapiURL(`/${collection}s`));
 
     const { data } = await response.json();
-    console.log(data);
+
     const extractedData = data.map((item: any) => {
       return {
         slug: item.attributes.slug,
@@ -27,9 +27,10 @@ export async function getEntryBySlug(
   slug: string
 ): Promise<PageData | null> {
   try {
-    const response = await fetch(getStrapiURL(`/${collection}s?populate=*`));
-    const { data } = await response.json();
-    
+    console.log(getStrapiURL(`/pageData/${slug}`));
+    const response = await fetch(getStrapiURL(`/pageData/${slug}`));
+    const data  = await response.json();
+    console.log(data);
     const matchingObject = data.find(
       (item: any) => item.attributes.slug === slug
     );

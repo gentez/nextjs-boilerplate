@@ -30,15 +30,8 @@ export async function getEntryBySlug(
     console.log(getStrapiURL(`/pageData/${slug}`));
     const response = await fetch(getStrapiURL(`/pageData/${slug}`));
     const data  = await response.json();
-    console.log(data);
-    const matchingObject = data.find(
-      (item: any) => item.attributes.slug === slug
-    );
-
-    return {
-      id: matchingObject.id,
-      ...matchingObject.attributes,
-    };
+    console.log(data.Section[0].column_image);
+    return data
   } catch (error) {
     console.error(`Error fetching ${collection} entry by slug ${slug}:`, error);
     return null;

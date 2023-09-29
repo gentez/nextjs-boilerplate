@@ -5,8 +5,9 @@ import Link from 'next/link';
 import { IRootState } from '../../../store';
 import { toggleTheme, toggleDirection } from '../../../store/themeConfigSlice';
 import { useRouter } from 'next/router';
-
-const NavigationBar = (props: any) => {
+import { PageData } from 'types';
+import { NextPage } from 'next';
+const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) => {
     const router = useRouter();
 
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
@@ -22,15 +23,15 @@ const NavigationBar = (props: any) => {
     };
 
     return (
-        <header className={`sticky top-0 z-50 bg-black duration-300 ${props.className}`}>
+        <header className={`sticky top-0 z-50 bg-black duration-300`}>
             <div className="container">
                 <div className="flex items-center justify-between py-5 lg:py-0">
                 <div className="flex items-center">
     <Link href="/" className="mr-4">
-        <img src="/images/jaalnet-logo.png" alt="Jaalnet" className="h-10" />
+        <img src={"http://localhost:1337"+data?.logo?.logoimage?.url} alt="Jaalnet" className="h-10" />
     </Link>
     <Link href="/">
-        <h2 className="text-2xl text-white font-extrabold leading-normal sm:text-3xl lg:text-[25px] lg:leading-[45px] ">JAALN<span className='text-secondary'>E</span>T</h2>
+        <h2 className="text-2xl text-white font-extrabold leading-normal sm:text-3xl lg:text-[25px] lg:leading-[45px] ">{data?.sitename?.toUpperCase()}</h2>
     </Link>
 </div>
 
@@ -54,72 +55,25 @@ const NavigationBar = (props: any) => {
                                 </button>
                             </div>
                             <ul onClick={() => toggleMenu()}>
-                                <li>
-                                    <Link href="/" className={router.pathname === '/' ? 'active' : ''}>
-                                        Home
-                                    </Link>
-                                </li>
-                                <li>
-                                <Link href="/pages/about" className={router.pathname === '/pages/about' || router.pathname === '/pages/about' ? 'active' : ''}>
-                                        About us
-                                    </Link>
-                                </li>
-                                
-                                <li>
-                                    <Link
-                                        href="/services"
-                                        className={router.pathname === '/services' || router.pathname === '/services-detail' ? 'active' : ''}
-                                    >
-                                        Services
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/contact" className={router.pathname === '/contact' ? 'active' : ''}>
-                                        Contact us
-                                    </Link>
-                                </li>
+                                {
+                                    data?.navitems?.map((navitem, index) => (
+                                        <li key={navitem.id}>
+                                            <Link href={"pages/"+navitem.link} className={router.pathname === navitem.link ? 'active' : ''}>
+                                                {navitem.name}
+                                            </Link>
+                                        </li>
+                                    ))
+                                    
+                                }
+                               
                                 <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-gray/30 ltr:pl-9 ltr:before:-left-[2px] rtl:pr-9 rtl:before:-right-[2px] lg:inline-flex">
                                     
                                 </li>
-                                {/* <li
-                                    className={`${showSearch ? '!w-full' : ''}
-                  search-bar absolute hidden w-0 overflow-hidden bg-black transition-all duration-500 ltr:right-0 rtl:left-0 lg:block`}
-                                >
-                                    <form action="" className="relative">
-                                        <input
-                                            type="text"
-                                            placeholder="Search"
-                                            className="w-full border-b border-white bg-transparent py-1 outline-none ltr:pl-2 ltr:pr-8 rtl:pr-2 rtl:pl-8"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="absolute top-1/2 -translate-y-1/2 hover:text-primary ltr:right-0 rtl:left-0"
-                                            onClick={() => toggleSearch()}
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="h-6 w-6"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </li> */}
+                                
                             </ul>
                         </div>
                         <ul className="flex items-center gap-2 ltr:pr-5 rtl:pl-5 ltr:lg:pl-5 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
-                            {/* <li>
-                                <Link href="/profile"
-                                    type="button"
-                                    className="flex h-5 w-5 items-center text-white hover:text-primary rtl:text-primary"
-                                >
-                                    Admin
-                                </Link>
-                            </li> */}
+                            
                             <li>
                                 <button
                                     type="button"

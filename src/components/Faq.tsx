@@ -23,7 +23,7 @@ const Faq = ({queries}) => {
                                     className="relative !flex w-full items-center justify-between gap-2 py-2.5 text-lg font-bold text-black ltr:text-left rtl:text-right dark:text-white"
                                     onClick={() => setActive(active === i ? null : i)}
                                 >
-                                    <div>{faq.question}</div>
+                                    <div>{faq.heading}</div>
                                     <div
                                         className={`grid h-6 w-6 flex-shrink-0 place-content-center rounded-full border-2 border-gray text-gray transition ${
                                             active === i ? '!border-black !text-black dark:!border-white dark:!text-white' : ''
@@ -44,7 +44,7 @@ const Faq = ({queries}) => {
                                 </button>
                                 <AnimateHeight duration={600} height={active === i ? 'auto' : 0}>
                                     <div className="lg:w-4/5">
-                                        <p className="px-0 pb-5 pt-0 text-sm font-bold leading-[18px] text-gray">{faq.answer}</p>
+                                        <p className="px-0 pb-5 pt-0 text-sm font-bold leading-[18px] text-gray">{faq.content}</p>
                                     </div>
                                 </AnimateHeight>
                             </div>

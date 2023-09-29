@@ -5,6 +5,12 @@ import NavigationBar from '@/components/global/navbar';
 import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
 import { NextPage } from 'next';
 import Link from 'next/link';
+import {Swiper} from 'swiper/react';
+import {SwiperSlide} from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import Navigation from 'swiper';
+import Autoplay from 'swiper';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { PageData } from 'types';
@@ -14,7 +20,22 @@ import Services from '../../../pages/Services/index';
 import { IRootState } from '../../../store';
 import Seo from '../seo';
 import Banner from '@/components/banner';
+import ProjectSlider from '@/components/slider';
 const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
+  const [showTopButton, setShowTopButton] = useState(false);
+
+  const goToTop = () => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+  };
+
+  const onScrollHandler = () => {
+      if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+          setShowTopButton(true);
+      } else {
+          setShowTopButton(false);
+      }
+  };
   const [active, setActive] = useState<any>(0);
   const isRtl =
     useSelector((state: IRootState) => state.themeConfig.direction) === 'rtl'
@@ -84,7 +105,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   //       <Gallery />
   //     </div>
   //     <Services />
-  //     {data?.Faqs?.length > 0 && <Faq queries={data.Faqs} />}
+      // {data?.Faqs?.length > 0 && <Faq queries={data.Faqs} />}
   //     {data?.footer?.data && (
   //       <div className="footer bottom-0 w-full">
   //         <Footer />
@@ -94,33 +115,44 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   // );
   return (
     <>
+                <div className="flex min-h-screen flex-col bg-white bg-gradient-to-r from-[#FCF1F4] to-[#EDFBF9] font-mulish text-base font-normal text-gray antialiased dark:bg-[#101926] dark:from-transparent dark:to-transparent">
+
+                <NavigationBar className={showTopButton ? 'sticky-header' : ''} data={data?.nav} />
     <Banner data={data}/>
+    
         
     {
-     data.Section.map((section, index) => (
-      <section key={index} className="pt-12 lg:pt-24 mb-10">
+     data?.Section?.map((section, index) => (
+      <section key={index} className="pt-12 lg:pt-24 mb-5">
       <div className="container">
-      <div className="grid grid-cols-1 md:grid-cols-12">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-2">
         {section?.column_html?.map((column, index) => (
-          <div key={index} className={`col-span-${column.grid}`}>
+          <div key={index} className={`col-span-${column?.grid}`}>
             {parser(column?.editor, options)}
           </div>
         ))}{section?.column_image?.map((column, index) => (
-          <div key={index} className={`col-span-${column.grid}`}>
+          <div key={index} className={`col-span-${column?.grid}`}>
             <img src={"http://localhost:1337"+column?.image?.url} alt={column?.image?.alternativeText} />
           </div>
         ))}
         {section?.column_card?.map((column, index) => (
-          <div key={index} className={`col-span-${column.grid}`}>
+          <div key={index} className={`col-span-${column?.grid}`}>
           {parser(column?.editor, options)}
         </div>
         
         ))}
+      {section?.column_accordion!==null && 
+          <div key={index} className={`col-span-${section?.column_accordion?.grid}`}>
+          <Faq queries={section?.column_accordion?.accordion} />
+          </div>
+      }
       </div></div></section>
     ))
     
     }
-    
+    <ProjectSlider title1="Our Project" title2="Some of our finest work."/>
+    <Footer data={data?.footer}/>
+    </div>
     </>
   )
 };

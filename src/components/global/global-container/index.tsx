@@ -103,11 +103,8 @@ export const GlobalContainer = ({ children }: ComponentProps) => {
                         </svg>
                     </div>
                 )}
-                <div className="flex min-h-screen flex-col bg-white bg-gradient-to-r from-[#FCF1F4] to-[#EDFBF9] font-mulish text-base font-normal text-gray antialiased dark:bg-[#101926] dark:from-transparent dark:to-transparent">
-                    <NavigationBar className={showTopButton ? 'sticky-header' : ''} />
+                    {/* <NavigationBar className={showTopButton ? 'sticky-header' : ''} /> */}
                     <Container>{children}</Container>
-                    <Footer />
-                </div>
                 {showTopButton && (
                     <button type="button" className="fixed bottom-5 z-10 animate-bounce ltr:right-5 rtl:left-5" onClick={goToTop}>
                         <div className="group flex h-14 w-14 items-center justify-center rounded-full border border-black/20 bg-black text-white transition duration-500 hover:bg-secondary dark:bg-primary dark:hover:bg-secondary">

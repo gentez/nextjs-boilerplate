@@ -1,12 +1,13 @@
 import Link from 'next/link';
-
-const Footer = () => {
+import { PageData } from 'types';
+import { NextPage } from 'next';
+const Footer: NextPage<{ data: PageData }> = ({ data }) => {
     return (
             <footer className="mt-auto shadow-md bg-white dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.03] dark:to-transparent">
                 <div className="container">
                     <div className="grid gap-y-10 gap-x-4 py-14 sm:grid-cols-3 lg:grid-cols-5 lg:py-[100px]">
                         <div className="relative">
-                        <h2 className="text-secondary text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">JAALNET</h2>
+                        <h2 className="text-secondary text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">{data.sitename.toUpperCase()}</h2>
                             <ul className="mt-12 flex items-center gap-8">
                                 <li>
                                     <Link href="#">
@@ -79,7 +80,16 @@ const Footer = () => {
                         <div>
                             <ul className="flex flex-col gap-3 font-bold">
                                 <li className="mb-3 text-lg font-extrabold text-black dark:text-white">Quick Menu</li>
-                                <li>
+                                {
+                                    data.footerlinks.map((link, index) => (
+                                        <li key={link.id}>
+                                            <Link href={"/"+link.link} className="inline-block text-gray transition hover:scale-110 hover:text-secondary">
+                                        {link.name}
+                                    </Link>
+                                        </li>
+                                    ))
+                                }
+                                {/* <li>
                                     <Link href="/" className="inline-block text-gray transition hover:scale-110 hover:text-secondary">
                                         Home
                                     </Link>
@@ -108,7 +118,7 @@ const Footer = () => {
                                     <Link href="/career" className="inline-block transition hover:scale-110 hover:text-secondary">
                                         Career
                                     </Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                         <div>

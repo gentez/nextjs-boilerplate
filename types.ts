@@ -28,13 +28,7 @@ export interface PageData {
     Section:[
       {
         id: number;
-        column_accordion: [
-          {
-            id: number;
-            heading: string;
-            content: string;
-          }
-        ];
+        
         column_card: [
           {
             id: number;
@@ -117,6 +111,19 @@ export interface PageData {
             grid: number;
           }
         ];
+        column_accordion:
+          {
+            id: number;
+            accordion: [
+              {
+                id: number;
+                heading: string;
+                content: string;
+              }
+            ];
+            grid: number;
+          }
+        
       }
     ]
   nav: {

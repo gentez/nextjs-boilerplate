@@ -9,7 +9,7 @@ const Home: NextPage<{ data: PageData }> = ({ data }) => {
 export const getStaticProps = async () => {
   try {
     const res = await getEntryBySlug('page', 'home');
-    console.log(res);
+    // console.log(res);
     return {
       props: {
         data: res || null,

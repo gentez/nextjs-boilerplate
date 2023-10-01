@@ -150,7 +150,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
     ))
     
     }
-    <ProjectSlider title1="Our Project" title2="Some of our finest work."/>
+    {data?.column_slider[0].slider_card?.length>=1 && <ProjectSlider data={data?.column_slider[0].slider_card} title1={data?.column_slider[0].title} title2={data?.column_slider[0].subtitle}/>}
     <Footer data={data?.footer}/>
     </div>
     </>

@@ -72,9 +72,11 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                                 
                             </ul>
                         </div>
-                        <ul className="flex items-center gap-2 ltr:pr-5 rtl:pl-5 ltr:lg:pl-5 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
-                            
+                        <ul className="flex flex-grow items-center gap-2 ltr:pr-5 rtl:pl-2 ltr:lg:pl-2 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
                             <li>
+                                <Link href="/profile" className='text-white hover:text-secondary'>Dashboard</Link>
+                            </li>
+                            <li className='ms-4'>
                                 <button
                                     type="button"
                                     className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-dark text-white hover:text-primary"

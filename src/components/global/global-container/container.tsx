@@ -1,4 +1,4 @@
-import Head from 'next/head';
+
 import { ComponentProps } from './constants';
 
 export const Container = ({ children }: ComponentProps) => {

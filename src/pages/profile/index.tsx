@@ -1,34 +1,32 @@
-import React from "react";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 export default function ProfilePage() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const logout = async () => {
-        try {
-            await signOut();
-            toast.success('Logout successful');
-            router.push('/login');
-        } catch (error:any) {
-            
-            toast.error(error.message);
-        }
+  const logout = async () => {
+    try {
+      await signOut();
+      toast.success('Logout successful');
+      router.push('/login');
+    } catch (error: any) {
+      toast.error(error.message);
     }
+  };
 
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-2xl font-semibold mb-4">Profile</h1>
-            <div className="bg-white rounded-lg shadow-md p-8 w-96">
-                <p className="mb-4">Welcome to your profile page!</p>
-                <button
-                    onClick={logout}
-                    className="p-2 bg-blue-500 text-white rounded-lg w-full hover:bg-blue-600 focus:outline-none"
-                >
-                    Logout
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+      <h1 className="mb-4 text-2xl font-semibold">Profile</h1>
+      <div className="w-96 rounded-lg bg-white p-8 shadow-md">
+        <p className="mb-4">Welcome to your profile page!</p>
+        <button
+          onClick={logout}
+          className="hover:bg-blue-600 w-full rounded-lg bg-secondary p-2 text-white focus:outline-none"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  );
 }

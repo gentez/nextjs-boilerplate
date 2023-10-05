@@ -1,12 +1,12 @@
-import Link from "next/link";
-import React from "react";
-import { signIn } from "next-auth/react";
-import { styles } from "./styles";
+import { signIn } from 'next-auth/react';
+import Link from 'next/link';
+import React from 'react';
+import { styles } from './styles';
 
 export default function LoginPage() {
   const [user, setUser] = React.useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [loading, setLoading] = React.useState(false);
@@ -14,14 +14,13 @@ export default function LoginPage() {
   const onLogin = async () => {
     try {
       setLoading(true);
-      const result = await signIn("credentials", {
+      await signIn('credentials', {
         email: user.email,
         password: user.password,
         redirect: true,
-        callbackUrl: "/admin",
+        callbackUrl: '/admin',
       });
       setLoading(false);
-      
     } catch (error) {
       console.log(error);
     }
@@ -31,12 +30,12 @@ export default function LoginPage() {
   const isButtonDisabled = !user.email || !user.password;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 mb-10">
-      <h1 className="text-2xl font-semibold mb-4">
-        {loading ? "Logging in..." : "Login"}
+    <div className="mb-10 flex min-h-screen flex-col items-center justify-center py-2">
+      <h1 className="mb-4 text-2xl font-semibold">
+        {loading ? 'Logging in...' : 'Login'}
       </h1>
-      <div className="bg-white rounded-lg shadow-md p-8 w-96">
-        <label htmlFor="email" className="text-sm mb-1">
+      <div className="w-96 rounded-lg bg-white p-8 shadow-md">
+        <label htmlFor="email" className="mb-1 text-sm">
           Email
         </label>
         <input
@@ -47,7 +46,7 @@ export default function LoginPage() {
           onChange={(e) => setUser({ ...user, email: e.target.value })}
           placeholder="Email"
         />
-        <label htmlFor="password" className="text-sm mb-1">
+        <label htmlFor="password" className="mb-1 text-sm">
           Password
         </label>
         <input
@@ -60,15 +59,15 @@ export default function LoginPage() {
         />
         <button
           onClick={onLogin}
-          className={`p-2 bg-blue-500 text-white rounded-lg w-full hover:bg-blue-600 focus:outline-none ${
-            isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+          className={`hover:bg-blue-600 w-full rounded-lg bg-secondary p-2 text-white focus:outline-none ${
+            isButtonDisabled ? 'cursor-not-allowed opacity-50' : ''
           }`}
           disabled={isButtonDisabled}
         >
-          {loading ? "Logging in..." : "Login"}
+          {loading ? 'Logging in...' : 'Login'}
         </button>
         <div className="mt-4">
-          <Link href="/register" className="text-blue-500 hover:underline mr-2">
+          <Link href="/register" className="text-blue-500 mr-2 hover:underline">
             Create an account
           </Link>
           <Link href="/forget" className="text-blue-500 hover:underline">

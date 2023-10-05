@@ -1,28 +1,62 @@
-import React from 'react';
-import parse from 'html-react-parser';
-const FAQS = () => {
-  return (
-    <section className="m-3 bg-neutral-900 dark:bg-gray-800 dark:text-gray-100">
-      <div className="min-h-sceen mx-auto max-w-screen-xl bg-neutral-900 px-5">
-        <div className="flex flex-col items-center">
-          <h2 className="mt-5 text-5xl font-bold tracking-tight">FAQ</h2>
-          <p className="mt-3 text-xl text-orange-500">
-            Frequenty asked questions
-          </p>
-        </div>
-        <div className="mx-auto mt-8 grid max-w-xl divide-y divide-neutral-200">
-				<div className="py-5">
-            <details className="mce-accordion bg-white p-4 shadow-md transition duration-300 hover:shadow-lg">
-              <summary className="cursor-pointer text-orange-500">
-                Accordion summary...
-              </summary>
-              <p className="mt-2 text-black">Accordion body...</p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+import { useState } from 'react';
+import AnimateHeight from 'react-animate-height';
+interface Queries {
+    id: number;
+    heading: string;
+    content: string;
+}
+
+const Faq = ({ queries }: { queries: Queries[] }) => {
+    const [active, setActive] = useState<any>(0);
+    return (
+        <>
+                <div className="heading text-center">
+                    <h6 className="text-secondary">FAQs</h6>
+                    <h4>
+                        Frequently Asked Questions
+                    </h4>
+                    <p className="mt-5 text-lg font-bold text-gray">Have questions? We’re help you.</p>
+                </div>
+                <div className="mx-auto lg:w-[730px]">
+                    {queries.map((faq: any, i: number) => {
+                        return (
+                            <div key={faq.id} className="mt-6 border-0 border-b-2 border-gray/20 bg-transparent">
+                                <button
+                                    type="button"
+                                    className="relative !flex w-full items-center justify-between gap-2 py-2.5 text-lg font-bold text-black ltr:text-left rtl:text-right dark:text-white"
+                                    onClick={() => setActive(active === i ? null : i)}
+                                >
+                                    <div>{faq.heading}</div>
+                                    <div
+                                        className={`grid h-6 w-6 flex-shrink-0 place-content-center rounded-full border-2 border-gray text-gray transition ${
+                                            active === i ? '!border-black !text-black dark:!border-white dark:!text-white' : ''
+                                        }`}
+                                    >
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                className={active === i ? 'hidden' : ''}
+                                                d="M6.09961 0.500977C6.65189 0.500977 7.09961 0.948692 7.09961 1.50098L7.09961 10.501C7.09961 11.0533 6.65189 11.501 6.09961 11.501H5.89961C5.34732 11.501 4.89961 11.0533 4.89961 10.501L4.89961 1.50098C4.89961 0.948692 5.34732 0.500977 5.89961 0.500977H6.09961Z"
+                                                fill="currentColor"
+                                            />
+                                            <path
+                                                d="M0.5 5.90039C0.5 5.34811 0.947715 4.90039 1.5 4.90039H10.5C11.0523 4.90039 11.5 5.34811 11.5 5.90039V6.10039C11.5 6.65268 11.0523 7.10039 10.5 7.10039H1.5C0.947715 7.10039 0.5 6.65268 0.5 6.10039V5.90039Z"
+                                                fill="currentColor"
+                                            />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <AnimateHeight duration={600} height={active === i ? 'auto' : 0}>
+                                    <div className="lg:w-4/5">
+                                        <p className="px-0 pb-5 pt-0 text-sm font-bold leading-[18px] text-gray">{faq.content}</p>
+                                    </div>
+                                </AnimateHeight>
+                            </div>
+                        );
+                    })}
+                </div></>
+        //     </div>
+        // </section>
+    );
 };
 
-export default FAQS;
+export default Faq;

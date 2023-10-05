@@ -1,16 +1,7 @@
-// import Testimonial from '../../components/';
-// import CounterComponent from '../components/CounterComponent';
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import { IRootState } from '../../store';
-import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
+import parser from 'html-react-parser';
 import { NextPage } from 'next';
 import { PageData } from 'types';
 const Banner:NextPage<{ data: PageData }> = ({ data }) => {
-  const isRtl =
-    useSelector((state: IRootState) => state.themeConfig.direction) === 'rtl'
-      ? true
-      : false;
 
   return (
     <>

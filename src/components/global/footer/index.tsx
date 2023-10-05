@@ -7,7 +7,7 @@ const Footer: NextPage<{ data: PageData }> = ({ data }) => {
                 <div className="container">
                     <div className="grid gap-y-10 gap-x-4 py-14 sm:grid-cols-3 lg:grid-cols-5 lg:py-[100px]">
                         <div className="relative">
-                        <h2 className="text-secondary text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">{data.sitename.toUpperCase()}</h2>
+                        <h2 className="text-secondary text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">{data.footer.sitename.toUpperCase()}</h2>
                             <ul className="mt-12 flex items-center gap-8">
                                 <li>
                                     <Link href="#">
@@ -81,9 +81,9 @@ const Footer: NextPage<{ data: PageData }> = ({ data }) => {
                             <ul className="flex flex-col gap-3 font-bold">
                                 <li className="mb-3 text-lg font-extrabold text-black dark:text-white">Quick Menu</li>
                                 {
-                                    data.footerlinks.map((link, index) => (
+                                    data.footer.footerlinks.map((link) => (
                                         <li key={link.id}>
-                                            <Link href={"/"+link.link} className="inline-block text-gray transition hover:scale-110 hover:text-secondary">
+                                            <Link href={"/pages/"+link.link} className="inline-block text-gray transition hover:scale-110 hover:text-secondary">
                                         {link.name}
                                     </Link>
                                         </li>

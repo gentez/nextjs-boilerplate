@@ -113,6 +113,13 @@ export interface PageData {
   nav: {
     id: number,
     sitename: string,
+    navitems: [
+      {
+        id: number,
+        link: string,
+        name: string
+      }
+    ],
     logo:{
       logoimage: {
         id: number,
@@ -137,7 +144,17 @@ export interface PageData {
     updatedAt:   Date;
     publishedAt: Date;
   },
-
+  footer: {
+    id: number,
+    sitename: string,
+    footerlinks: [
+      {
+        id: number,
+        link: string,
+        name: string
+      }
+    ]
+  },
   banner: {
     id: number,
     editor: string,

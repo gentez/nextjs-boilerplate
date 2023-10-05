@@ -1,17 +1,15 @@
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import Link from 'next/link';
-import { IRootState } from '../../../store';
-import { toggleTheme, toggleDirection } from '../../../store/themeConfigSlice';
+
+
 import { useRouter } from 'next/router';
 import { PageData } from 'types';
 import { NextPage } from 'next';
 const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) => {
     const router = useRouter();
 
-    const themeConfig = useSelector((state: IRootState) => state.themeConfig);
-    const dispatch = useDispatch();
 
     const [showMenu, setShowMenu] = useState(false);
     const toggleMenu = () => {
@@ -28,10 +26,10 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                 <div className="flex items-center justify-between py-5 lg:py-0">
                 <div className="flex items-center">
     <Link href="/" className="mr-4">
-        <img src={"http://localhost:1337"+data?.logo?.logoimage?.url} alt="Jaalnet" className="h-10" />
+        <img src={"http://localhost:1337"+data?.nav?.logo?.logoimage?.url} alt="Jaalnet" className="h-10" />
     </Link>
     <Link href="/">
-        <h2 className="text-2xl text-white font-extrabold leading-normal sm:text-3xl lg:text-[25px] lg:leading-[45px] ">{data?.sitename?.toUpperCase()}</h2>
+        <h2 className="text-2xl text-white font-extrabold leading-normal sm:text-3xl lg:text-[25px] lg:leading-[45px] ">{data?.nav?.sitename?.toUpperCase()}</h2>
     </Link>
 </div>
 
@@ -56,9 +54,9 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                             </div>
                             <ul onClick={() => toggleMenu()}>
                                 {
-                                    data?.navitems?.map((navitem, index) => (
+                                    data?.nav?.navitems?.map((navitem, index) => (
                                         <li key={navitem.id}>
-                                            <Link href={"pages/"+navitem.link} className={router.pathname === navitem.link ? 'active' : ''}>
+                                            <Link href={navitem.link==="home"?"/":("/pages/"+navitem.link)} className={router.pathname === ("/pages/"+navitem.link) ? 'active' : ''}>
                                                 {navitem.name}
                                             </Link>
                                         </li>
@@ -66,7 +64,7 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                                     
                                 }
                                
-                                <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-gray/30 ltr:pl-9 ltr:before:-left-[2px] rtl:pr-9 rtl:before:-right-[2px] lg:inline-flex">
+                                <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-white ltr:pl-9 ltr:before:-left-[2px] rtl:pr-9 rtl:before:-right-[2px] lg:inline-flex">
                                     
                                 </li>
                                 
@@ -76,7 +74,7 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                             <li>
                                 <Link href="/profile" className='text-white hover:text-secondary'>Dashboard</Link>
                             </li>
-                            <li className='ms-4'>
+                            {/* <li className='ms-4'>
                                 <button
                                     type="button"
                                     className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-dark text-white hover:text-primary"
@@ -113,7 +111,7 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                                         />
                                     </svg>
                                 </button>
-                            </li>
+                            </li> */}
                         </ul>
                         <button
                             type="button"

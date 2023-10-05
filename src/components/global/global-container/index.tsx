@@ -4,8 +4,7 @@ import { Container } from './container';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import App from '../../../../App';
-import Footer from '../footer';
-import NavigationBar from '../navbar';
+
 export const GlobalContainer = ({ children }: ComponentProps) => {
   const [showLoader, setShowLoader] = useState(true);
   const [showTopButton, setShowTopButton] = useState(false);
@@ -103,7 +102,7 @@ export const GlobalContainer = ({ children }: ComponentProps) => {
                         </svg>
                     </div>
                 )}
-                    {/* <NavigationBar className={showTopButton ? 'sticky-header' : ''} /> */}
+                    
                     <Container>{children}</Container>
                 {showTopButton && (
                     <button type="button" className="fixed bottom-5 z-10 animate-bounce ltr:right-5 rtl:left-5" onClick={goToTop}>

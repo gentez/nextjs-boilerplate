@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
-import { styles } from './styles';
+import { styles } from '../../styles/login';
 
 export default function LoginPage() {
   const [user, setUser] = React.useState({

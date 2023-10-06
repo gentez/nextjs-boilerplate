@@ -1,10 +1,15 @@
 'use client';
-import Faq from '@/components/faqs';
 import Banner from '@/components/banner';
+import Faq from '@/components/faqs';
 import Footer from '@/components/global/footer';
 import NavigationBar from '@/components/global/navbar';
 import ProjectSlider from '@/components/slider';
-import parser, { HTMLReactParserOptions, domToReact } from 'html-react-parser';
+import parser,{
+  domToReact,
+  attributesToProps,
+  Element,
+  HTMLReactParserOptions,
+} from 'html-react-parser';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -38,7 +43,9 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
       ? true
       : false;
   const options: HTMLReactParserOptions = {
-    replace: ({ attribs, children, name }) => {
+    replace: domNode => {
+      const typedDomNode = domNode as Element
+      const { name, children, attribs } = typedDomNode
       if (!attribs) {
         return;
       }
@@ -54,9 +61,9 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           </summary>
         );
       }
-      if (name === 'a') {
-        return <Link {...attribs}>{domToReact(children, options)}</Link>;
-      }
+      // if (name === 'a') {
+      //   return <Link {...attribs}>{domToReact(children, options)}</Link>;
+      // }
       if (name === 'img' && attribs?.class === 'pencil-ruler') {
         return (
           <img
@@ -100,12 +107,12 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
   };
   return (
     <>
-    <Seo title={data?.Title} />
+      <Seo title={data?.Title} />
       <div className="flex min-h-screen flex-col bg-white bg-gradient-to-r from-[#FCF1F4] to-[#EDFBF9] font-mulish text-base font-normal text-gray antialiased dark:bg-[#101926] dark:from-transparent dark:to-transparent">
-        <NavigationBar
+        {data.nav && <NavigationBar
           className={showTopButton ? 'sticky-header' : ''}
           data={data}
-        />
+        />}
 
         {data?.banner?.editor && <Banner data={data} />}
 
@@ -151,8 +158,8 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
             title2={data?.column_slider[0].subtitle}
           />
         )}
-        
-        <Footer data={data} />
+
+        {data.footer && <Footer data={data} />}
       </div>
     </>
   );

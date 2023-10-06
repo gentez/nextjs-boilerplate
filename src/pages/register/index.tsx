@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { styles } from './styles';
+import { styles } from '../../styles/register';
 export default function SignupPage() {
   const router = useRouter();
   const [user, setUser] = React.useState({

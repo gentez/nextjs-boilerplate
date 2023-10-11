@@ -109,11 +109,11 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
     <>
       <Seo title={data?.Title} />
       <div className="flex min-h-screen flex-col bg-white bg-gradient-to-r from-[#FCF1F4] to-[#EDFBF9] font-mulish text-base font-normal text-gray antialiased dark:bg-[#101926] dark:from-transparent dark:to-transparent">
-        {data.nav && <NavigationBar
-          className={showTopButton ? 'sticky-header' : ''}
+        {data?.nav && <NavigationBar
+          sticky={showTopButton ? 'sticky-header' : ''}
           data={data}
         />}
-
+  <div className='overflow-x-hidden'>
         {data?.banner?.editor && <Banner data={data} />}
 
         {data?.Section?.map((section, index) => (
@@ -158,8 +158,9 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
             title2={data?.column_slider[0].subtitle}
           />
         )}
-
-        {data.footer && <Footer data={data} />}
+        
+</div>
+        {data?.footer && <Footer data={data} />}
       </div>
     </>
   );

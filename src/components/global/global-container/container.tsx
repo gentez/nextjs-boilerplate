@@ -3,7 +3,7 @@ import { ComponentProps } from './constants';
 
 export const Container = ({ children }: ComponentProps) => {
   return (
-    <div className='overflow-x-hidden'>
+    <div>
 
         {children}
        

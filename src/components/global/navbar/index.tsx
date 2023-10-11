@@ -7,10 +7,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { PageData } from 'types';
 import { NextPage } from 'next';
-const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) => {
+const NavigationBar: NextPage<{ data: PageData,sticky:String }> = ({ data,sticky }) => {
     const router = useRouter();
-
-
+    console.log(router.query);
     const [showMenu, setShowMenu] = useState(false);
     const toggleMenu = () => {
         if (window.innerWidth < 1024) {
@@ -21,7 +20,7 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
     };
 
     return (
-        <header className={`sticky top-0 z-50 bg-black duration-300`}>
+        <header className={`sticky top-0 z-50 bg-black duration-300 ${sticky}`}>
             <div className="container">
                 <div className="flex items-center justify-between py-5 lg:py-0">
                 <div className="flex items-center">
@@ -56,7 +55,7 @@ const NavigationBar: NextPage<{ data: PageData,className:String }> = ({ data }) 
                                 {
                                     data?.nav?.navitems?.map((navitem, index) => (
                                         <li key={navitem.id}>
-                                            <Link href={navitem.link==="home"?"/":("/pages/"+navitem.link)} className={router.pathname === ("/pages/"+navitem.link) ? 'active' : ''}>
+                                            <Link href={navitem.link==="home"?"/":("/pages/"+navitem.link)} className={router?.query?.slug === navitem.link.toLowerCase() ? 'active' : ''}>
                                                 {navitem.name}
                                             </Link>
                                         </li>

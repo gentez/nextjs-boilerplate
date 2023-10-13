@@ -48,14 +48,18 @@ export interface PageData {
               created_at: Date;
               updated_at: Date;
             };
-            grid: number;
+            lg: number;
+            sm: number;
+            md: number;
           }
         ];
         column_html: [
           {
             id: number;
             editor: string;
-            grid: number;
+            lg: number;
+            sm: number;
+            md: number;
           }
         ];
         column_image: [
@@ -92,7 +96,9 @@ export interface PageData {
               created_at: Date;
               updated_at: Date;
             };
-            grid: number;
+            lg: number;
+            sm: number;
+            md: number;
           }
         ];
         column_accordion:
@@ -105,7 +111,9 @@ export interface PageData {
                 content: string;
               }
             ];
-            grid: number;
+            lg: number;
+            sm: number;
+            md: number;
           }
         
       }

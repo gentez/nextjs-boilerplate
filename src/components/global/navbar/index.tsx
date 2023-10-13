@@ -63,16 +63,16 @@ const NavigationBar: NextPage<{ data: PageData,sticky:String }> = ({ data,sticky
                                     
                                 }
                                
-                                <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-white ltr:pl-9 ltr:before:-left-[2px] rtl:pr-9 rtl:before:-right-[2px] lg:inline-flex">
+                                <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-white ltr:pl-0 ltr:before:-left-[2px] rtl:pr-9 rtl:before:-right-[2px] lg:inline-flex">
                                     
                                 </li>
-                                
-                            </ul>
-                        </div>
-                        <ul className="flex flex-grow items-center gap-2 ltr:pr-5 rtl:pl-2 ltr:lg:pl-2 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
-                            <li>
+                                <li>
                                 <Link href="/profile" className='text-white hover:text-secondary'>Dashboard</Link>
                             </li>
+                            </ul>
+                        </div>
+                        {/* <ul className="flex flex-grow items-center gap-2 ltr:pr-5 rtl:pl-2 ltr:lg:pl-2 ltr:lg:pr-0 rtl:lg:pr-5 rtl:lg:pl-0">
+                            
                             {/* <li className='ms-4'>
                                 <button
                                     type="button"
@@ -110,8 +110,8 @@ const NavigationBar: NextPage<{ data: PageData,sticky:String }> = ({ data,sticky
                                         />
                                     </svg>
                                 </button>
-                            </li> */}
-                        </ul>
+                            </li> 
+                        </ul> */}
                         <button
                             type="button"
                             className="flex h-10 w-10 items-center justify-center rounded-full bg-primary lg:hidden"

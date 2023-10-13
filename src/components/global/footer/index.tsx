@@ -7,7 +7,7 @@ const Footer: NextPage<{ data: PageData }> = ({ data }) => {
                 <div className="container">
                     <div className="grid gap-y-10 gap-x-4 py-14 sm:grid-cols-3 lg:grid-cols-5 lg:py-[100px]">
                         <div className="relative">
-                        <h2 className="text-secondary text-4xl font-extrabold leading-normal sm:text-5xl lg:text-[25px] lg:leading-[45px] ">{data.footer.sitename.toUpperCase()}</h2>
+                        <h2 className="text-secondary text-2xl font-extrabold leading-normal sm:text-3xl md:text-4xl lg:text-[25px] lg:leading-[45px] ">{data.footer.sitename.toUpperCase()}</h2>
                             <ul className="mt-12 flex items-center gap-8">
                                 <li>
                                     <Link href="#">

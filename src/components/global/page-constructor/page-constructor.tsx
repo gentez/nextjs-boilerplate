@@ -61,9 +61,7 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
           </summary>
         );
       }
-      // if (name === 'a') {
-      //   return <Link {...attribs}>{domToReact(children, options)}</Link>;
-      // }
+     
       if (name === 'img' && attribs?.class === 'pencil-ruler') {
         return (
           <img
@@ -119,14 +117,16 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
         {data?.Section?.map((section, index) => (
           <section key={index} className="mb-5 pt-12 lg:pt-24">
             <div className="container">
-              <div className="grid grid-cols-1 gap-2 md:grid-cols-12">
+              <div className="grid grid-cols-12 gap-3">
                 {section?.column_html?.map((column, index) => (
-                  <div key={index} className={`col-span-${column?.grid}`}>
+                  <div key={index} className={`md:col-span-${column?.lg} sm:col-span-${column?.md || column?.lg} col-span-${column?.sm || column?.lg}`}>
+
                     {parser(column?.editor, options)}
                   </div>
                 ))}
+                {/*flex h-11 w-11 items-center justify-center rounded-full bg-[#F3F4F6] transition group-hover:bg-black rtl:rotate-180 dark:bg-gray-dark group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary col-span-1: sm:col-span-2md:col-span-2 lg:col-span-2 xl:col-span-2 2xl:col-span-2 col-span-3: sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3 2xl:col-span-3 col-span-4: sm:col-span-4 md:col-span-4 lg:col-span-4 xl:col-span-4 2xl:col-span-4 col-span-5: sm:col-span-5 md:col-span-5 lg:col-span-5 xl:col-span-5 2xl:col-span-5 col-span-6: sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6 2xl:col-span-6 col-span-7: sm:col-span-7 md:col-span-7 lg:col-span-7 xl:col-span-7 2xl:col-span-7 col-span-8: sm:col-span-8 md:col-span-8 lg:col-span-8 xl:col-span-8 2xl:col-span-8 col-span-9: sm:col-span-9 md:col-span-9 lg:col-span-9 xl:col-span-9 2xl:col-span-9 col-span-10: sm:col-span-10 md:col-span-10 lg:col-span-10 xl:col-span-10 2xl:col-span-10 col-span-11: sm:col-span-11 md:col-span-11 lg:col-span-11 xl:col-span-11 2xl:col-span-11 col-span-12: sm:col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-12 2xl:col-span-12 */}
                 {section?.column_image?.map((column, index) => (
-                  <div key={index} className={`col-span-${column?.grid}`}>
+                  <div key={index} className={`md:col-span-${column?.lg} sm:col-span-${column?.md || column?.lg} col-span-${column?.sm || column?.lg} sm:block hidden mt-2 md:mt-0`}>
                     <img
                       src={'http://localhost:1337' + column?.image?.url}
                       alt={column?.image?.alternativeText}
@@ -134,14 +134,14 @@ const PageConstructor: NextPage<{ data: PageData }> = ({ data }) => {
                   </div>
                 ))}
                 {section?.column_card?.map((column, index) => (
-                  <div key={index} className={`col-span-${column?.grid}`}>
+                  <div key={index} className={`md:col-span-${column?.lg} sm:col-span-${column?.md || column?.lg} col-span-${column?.sm || column?.lg} mb-2 md:mb-0`}>
                     {parser(column?.editor, options)}
                   </div>
                 ))}
                 {section?.column_accordion !== null && (
                   <div
                     key={index}
-                    className={`col-span-${section?.column_accordion?.grid}`}
+                    className={`md:col-span-${section?.column_accordion?.lg} sm:col-span-${section?.column_accordion?.md || section?.column_accordion?.lg} col-span-${section?.column_accordion?.sm || section?.column_accordion?.lg}`}
                   >
                     <Faq queries={section?.column_accordion?.accordion} />
                   </div>

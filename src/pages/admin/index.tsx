@@ -1,43 +1,42 @@
-import React from "react";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { toast } from 'react-hot-toast';
 
 export default function AdminPage() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const logout = async () => {
-        try {
-            await signOut();
-            toast.success('Logout successful');
-            router.push('/login');
-        } catch (error:any) {
-            toast.error(error.message);
-        }
+  const logout = async () => {
+    try {
+      await signOut();
+      toast.success('Logout successful');
+      router.push('/login');
+    } catch (error: any) {
+      toast.error(error.message);
     }
+  };
 
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
-            <div className="bg-white rounded-lg shadow-md p-8 w-96">
-                <p className="mx-auto">Welcome to your dashboard page!</p>
-                <div className="flex justify-between">
-                    <button
-                        onClick={logout}
-                        className="p-2 bg-blue-500 text-white rounded-lg w-1/2 hover:bg-blue-600 focus:outline-none"
-                    >
-                        Logout
-                    </button>
-                    <Link
-                        href="https://strapi-dev-ddlv.onrender.com/admin/auth/login"
-                        target="_blank"
-                        className="p-2 bg-blue-500 text-white rounded-lg w-1/2 ml-4 hover:bg-blue-600 focus:outline-none"
-                    >
-                        Strapi Login
-                    </Link>
-                </div>
-            </div>
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+      <h1 className="mb-4 text-2xl font-semibold">Dashboard</h1>
+      <div className="w-96 rounded-lg bg-white p-8 shadow-md">
+        <p className="mx-auto">Welcome to your dashboard page!</p>
+        <div className="flex justify-between">
+          <button
+            onClick={logout}
+            className="hover:bg-blue-600 w-1/2 rounded-lg bg-secondary p-2 text-white focus:outline-none"
+          >
+            Logout
+          </button>
+          <Link
+            href="http://localhost:1337/admin/auth/login"
+            target="_blank"
+            className="hover:bg-blue-600 ml-4 w-1/2 rounded-lg bg-secondary p-2 text-white focus:outline-none"
+          >
+            Strapi Login
+          </Link>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
